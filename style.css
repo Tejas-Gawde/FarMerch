@@ -260,3 +260,58 @@ button.white{
 span{
     color: rgb(255, 0, 0);
 }
+
+.updates{
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    background-image: url(Images/fruit\ back.jpg);
+    background-repeat: no-repeat;
+    background-position: 0% 100%;
+    background-color: rgb(251, 255, 0);
+    padding: 40px 80px;
+    margin: 40px 0;
+}
+
+.updates h4{
+    font-size: 22px;
+    font-weight: 700;   
+}
+.updates p{
+    font-size:14px;
+    font-weight: 600;
+}
+.updates .form{
+    display:flex;
+    width:40%;
+}
+.updates input{
+    height:3.125rem;
+    padding: 0 1.25em;
+    font-size:14px;
+    width:100%;
+    border:1px solid transparent;
+    border-radius:4px;
+    outline:none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+button.normal{
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px 30px;
+    color:black;
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition:0.2s;
+}
+.updates button{
+    background-color: aqua;
+    white-space: nowrap;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
