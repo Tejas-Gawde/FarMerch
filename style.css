@@ -201,3 +201,62 @@ p{
 .col-2 h3{
     color: red;
 }
+.banner{
+    margin-top: 70px;
+    margin-left: 50px;
+    margin-right: 50px;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+}
+.banner .banner-box{
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: flex-start;
+    background-image: url(Images/spices.jpg);
+    min-width:580px;
+    height: 50vh;
+    background-size: cover;
+    background-position: center;
+    padding:30px;
+}
+.banner h4{
+    color:white;
+    font-size: 20px;
+    font-weight: 300;
+}
+.banner h2{
+    color:white;
+    font-size: 30px;
+    font-weight: 800px;
+}
+.banner p{
+    color:white;
+    font-size: 14px;
+    font-weight: 500px;
+    padding-bottom: 15px;
+}
+button.white{
+    font-size:13px;
+    font-weight: 600px;
+    padding: 11px 18px;
+    color:white;
+    background-color:transparent;
+    cursor:pointer;
+    border:1px solid white;
+    outline:none;
+    transition: 0.2s;
+}
+.banner .banner-box:hover button{
+    background: #088178;
+    border:1px solid  #088178;
+}
+.banner .banner-box2{   
+    background-image: url(Images/sugar.jpg);   
+}
+span{
+    color: rgb(255, 0, 0);
+}
