@@ -13,7 +13,7 @@ body{
     background: radial-gradient(white,lightgreen);
     border:0.5px solid;
     box-shadow: 0 5px 15px rgba(0,0,0, 0.1);
-    margin-bottom: 30px;
+    
 }
 nav{
     flex:1;
@@ -259,23 +259,4 @@ button.white{
 }
 span{
     color: rgb(255, 0, 0);
-}
-
-.carousel-item img {
-    object-fit: contain;
-    height: 600px;
-}
-
-.carouselDiv {
-    height: 600px;
-    display: flex;
-    justify-content: center;
-}
-
-.carousel-caption {
-    background-color: rgb(255, 255, 255);
-    height: 100px;
-    box-shadow: 0px 0px 30px 40px rgb(255, 255, 255);
-    border-radius: 10px;
-    margin-bottom: 20px;
 }
