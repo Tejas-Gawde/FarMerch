@@ -10,7 +10,8 @@ body{
     display:flex;
     align-items:center;
     padding: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0, 0.06);
+    box-shadow: 0 5px 15px rgba(0,0,0, 0.1);
+    background: radial-gradient(white,lightgreen);
     
 }
 nav{
@@ -190,8 +191,10 @@ p{
 }
 
 .offer{
-    background: radial-gradient(white, lightyellow);
+    background: radial-gradient(white, lightblue);
     margin-top: 80px;
     padding: 30px 0;
-
+}
+.col-2 .offer-img{
+    padding:50px;
 }
