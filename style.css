@@ -6,6 +6,11 @@
 body{
     font-family: 'Poppins', sans-serif;
 }
+
+.section-p1{
+    padding:40px 80px;
+}
+
 .navbar{
     display:flex;
     align-items:center;
@@ -314,4 +319,46 @@ button.normal{
     white-space: nowrap;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+}
+footer{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+footer .col{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;;
+}
+footer .logo{
+    margin-bottom: 30px;
+    height:100px
+}
+footer h4{
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+footer p{
+    font-size: 13px;
+    margin:0 0 8px 0;
+}
+footer a{
+    font-size:13px;
+    text-decoration: none;
+    color:grey;
+    margin-bottom: 10px;
+}
+footer .follow{
+    margin-top: 20px;
+
+}
+footer .follow i{
+    color:#555;
+    padding-right: 4px;
+    cursor:pointer;
+}
+footer .copyw{
+    width:100%;
+    text-align: center;
 }
