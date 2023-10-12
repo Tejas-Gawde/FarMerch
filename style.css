@@ -387,11 +387,27 @@ footer .copyw{
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: column;
 }
 .buyer-seller-container{
-    height: 350px;
     width: 550px;
     border: #cac9c9 solid thin;
     padding: 10px;
     border-radius: 10px;
+}
+.tab-pane {
+    margin: 20px;
+}
+.submit-button {
+    display: flex;
+    justify-content: center;
+}
+.input-group{
+    padding-bottom: 15px;
+}
+.btn{
+    margin-top: 20px;
+}
+.usertype {
+    font-family: sans-serif;
 }
