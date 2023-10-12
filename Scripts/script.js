@@ -13,7 +13,11 @@ var loginEmail = document.getElementById("loginEmail");
 var loginPassword = document.getElementById("loginPass");
 var register = document.getElementById("register");
 var login = document.getElementById("login");
+var status = document.getElementById("status");
 
+//Logged in Default
+var loggedIn = false;
+var UserData;
 // Function for creating new user
 async function registerUser() {
     const { data, error } = await supabase.auth.signUp({
@@ -26,6 +30,8 @@ async function registerUser() {
     else {
         alert("Register Successfull");
         console.log(data);
+        loggedIn=true;
+        logincheck();
     }
 }
 
@@ -41,7 +47,17 @@ async function loginUser(){
     else {
         alert("Login Successfull");
         console.log(data);
+        loggedIn=true;
+        logincheck(data.user.email);
     }
+}
+
+// FUnction to check login 
+async function logincheck(data.user.email){
+    if(loggedIn){
+        status.innerText=`User status : Logged in by email - ${data.user.email}`;
+    }
+    else return
 }
 
 // Event Listener
