@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FarMerch|E-Commerce Website for Farmers</title>
@@ -10,38 +11,44 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 <body>
-    <div class="navbar">
+    <div class="site-navbar">
         <div class="navbar-logo">
             <img src="images/logoo.png" width="150px">
         </div>
+        <h3 class="site-name">FarMerch</h3>
         <nav>
-            <ul>
-                <li><a href="index.html">Home</a> </li>
-                <li><a href="products.html">Products</a> </li>
-                <li><a href="about.html">About us</a></li>
-                <li><a href="contact.html">Contact us</a></li>
-                <li><a href="account.html">Account</a></li>
+            <ul class="header-button-list">
+                <li><a type="button" class="btn btn-primary">Home</a> </li>
+                <li><a type="button" class="btn btn-primary">Products</a>  </li>
+                <li><a type="button" class="btn btn-primary">About Us</a> </li>
+                <li><a type="button" class="btn btn-primary">Contact Us</a> </li>
+                <li><div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Account
+                    </button>
+                    <ul class="dropdown-menu drop">
+                      <li><a class="dropdown-item" href="#">Buyer</a></li>
+                      <li><a class="dropdown-item" href="#">Seller</a></li>
+                    </ul>
+                  </div>
+                </li>
             </ul>
             <a href=""><img src="Images/cart.png" width="30px" height="30px"></a>
         </nav>
     </div>
-    <div class="header">
-        <div class="container">
+    <div class="site-header">
+        <div class="header-container">
 
-            <div class="row">
-                <div class="col-2">
+            <div class="row-elements">
+                <div class="column-2">
                     <h1>Organic and Fresh Veggies<br>at your Doorstep!</h1>
                     <p>Straight from the farm to your house without any middleman. And what's more?<br> At absolutely
                         appropriate prices!</p>
-                    <a href="" class="btn">Explore Now &#8594;</a>
+                    <a href="" class="btns">Explore Now &#8594;</a>
                 </div>
-                <div class="col-2">
+                <div class="column-2">
                     <img src="Images/veggiess.png">
 
                 </div>
@@ -53,20 +60,20 @@
     <div class="categories">
         <div class="small-container">
             <h1>Featured Categories</h1>
-            <div class="row">
-                <div class="col-3">
+            <div class="row-elements">
+                <div class="column-3">
                     <div class="box">
                         <img src="Images/vegetables.jpg"></img>
                         <h2>Vegetables</h2>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="column-3">
                     <div class="box">
                         <img src="Images/fruits.jpg"></img>
                         <h2>Fruits</h2>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="column-3">
                     <div class="box">
                         <img src="Images/cereals.png"></img>
                         <h2>Cereals</h2>
@@ -79,7 +86,7 @@
     <!----------Featured Products------------>
     <div class="small-category">
         <h1 class="title">Featured Products</h1>
-        <div class="row">
+        <div class="row-elements">
             <div class="pro">
                 <img src="Images/tomatoes.jpg">
                 <h4>Tomatoes</h4>
@@ -160,15 +167,15 @@
     <!-------------Offer-------------->
     <div class="offer">
         <div class="green veg">
-            <div class="row">
-                <div class="col-2">
+            <div class="row-elements">
+                <div class="column-2">
                     <img src="Images/green vegetabless.png" class="offer-img">
                 </div>
-                <div class="col-2">
+                <div class="column-2">
                     <p>Exclusively available on FarMerch.</p><br>
                     <h2>Fresh Green Vegetables at all time low prices!</h2>
                     <h3>Get 50% Off on first order!</h3>
-                    <a href="" class="btn">Buy Now! &#8594;</a>
+                    <a href="" class="btns">Buy Now! &#8594;</a>
                 </div>
             </div>
         </div>
@@ -204,7 +211,7 @@
 
     <!---------Footer---------->
     <footer class="section-p1">
-        <div class="col">
+        <div class="column">
             <img class="logo" src="Images/logoo.png">
             <h4>Contact</h4>
             <p><strong>Address:</strong>562 Sambhaji road,Mumbai-57</p>
@@ -221,13 +228,13 @@
                 </div>
             </div>
         </div>
-        <div class="col">
+        <div class="column">
             <h4>About</h4>
             <a href="#">About us</a>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms and Conditions</a>
         </div>
-        <div class="col">
+        <div class="column">
             <h4>My Account</h4>
             <a href="#">Sign in</a>
             <a href="#">View cart</a>
@@ -245,9 +252,8 @@
 
     </footer>
 
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -11,14 +11,15 @@ body{
     padding:40px 80px;
 }
 
-.navbar{
+.site-navbar{
     display:flex;
     align-items:center;
     padding: 10px;
-    background: radial-gradient(white,lightgreen);
-    border:0.5px solid;
+    background: white;
+    border-bottom:F0.5px solid;;
     box-shadow: 0 5px 15px rgba(0,0,0, 0.1);
-    
+    padding-right: 50px;
+    padding-left: 50px;
 }
 .navbar-logo img{
     width: 70px;
@@ -46,33 +47,33 @@ a:hover{
 p{
     color:#555;
 }
-.container{
+.header-container{
     max-width: 1300px;
     margin:auto;
     padding-left: 25px;
     padding-right:25px ;
 }
-.row{
+.row-elements{
     display:flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-.col-2{
+.column-2{
     flex-basis: 50%;
     min-width: 300px;
 }
-.col-2 img{
+.column-2 img{
     max-width: 100%;
     padding:10px ;
     margin-left: 70px;
 }
-.col-2 h1{
+.column-2 h1{
     font-size: 50px;
     line-height: 50px;
     margin:25px 0;
 }
-.btn{
+.btns{
     display:inline-block;
     background:#fff52b;
     color:white;
@@ -80,14 +81,15 @@ p{
     margin:30px 0;
     border-radius: 30px;
     transition: background 0.2s;
+    text-decoration: none;
 }
-.btn:hover{
+.btns:hover{
     background: grey;
 }
-.header{
+.site-header{
     background: radial-gradient(white,lightgreen);
 }
-.header .row{
+.site-header .row-elements{
     margin-left: 70px;
 }
 
@@ -95,12 +97,12 @@ p{
 .categories{
     margin:60px 0;
 }
-.col-3{
+.column-3{
     flex-basis: 30%;
     min-width: 250px;
     margin-bottom: 30px;
 }
-.col-3 img{
+.column-3 img{
     width: 100%;
     
 }
@@ -128,7 +130,7 @@ p{
     left:50%;
     transform: translateX(-50%);
 }
-.col-3 .box{
+.column-3 .box{
     width:300px;
     text-align: center;
     padding:20px 10px;
@@ -138,11 +140,11 @@ p{
     margin:15px 0;
 
 }
-.col-3 .box:hover{
+.column-3 .box:hover{
     box-shadow: 10px 10px 54px rgba(70,62,221,0.1);
 
 }
-.col-3 .box h2{
+.column-3 .box h2{
     display:inline-block;
     padding:9px 8px 6px 8px;
     line-height: 1;
@@ -204,10 +206,10 @@ p{
     margin-top: 80px;
     padding: 30px 0;
 }
-.col-2 .offer-img{
+.column-2 .offer-img{
     padding:50px;
 }
-.col-2 h3{
+.column-2 h3{
     color: red;
 }
 .banner{
@@ -306,7 +308,7 @@ span{
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 }
-button.normal{
+.normal{
     font-size: 14px;
     font-weight: 600;
     padding: 15px 30px;
@@ -329,7 +331,7 @@ footer{
     flex-wrap:wrap;
     justify-content:space-between;
 }
-footer .col{
+footer .column{
     display:flex;
     flex-direction: column;
     align-items: flex-start;
@@ -369,4 +371,27 @@ footer .copyw{
 .menu-icon{
     width:30px;
     height:30px;
+}
+.site-header-button-list {
+    margin: 0;
+}
+.site-name {
+    font-family: Poppins;
+    margin-left: 20px;
+}
+.dropdown-menu {
+    --bs-dropdown-min-width: 4rem;
+}
+.buyer-seller-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.buyer-seller-container{
+    height: 350px;
+    width: 550px;
+    border: #cac9c9 solid thin;
+    padding: 10px;
+    border-radius: 10px;
 }
