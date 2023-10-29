@@ -25,14 +25,15 @@
   }
   
   /* Style the container/contact section */
-  .container {
+  .contact-container {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 10px;
   }
   
   .column {
-    float: left;
+    display: flex;
+    justify-content: center;
     width: 50%;
     margin-top: 6px;
     padding: 20px;
