@@ -468,3 +468,28 @@ footer .copyw{
     bottom: 20px;
     right:10px;
 }
+
+.prodetails{
+    display:flex;
+    margin-top: 20px;
+}
+
+.prodetails .single-pro-image{
+    width:40%;
+    margin-right:50px;
+}
+
+.prodetails .single-pro-details{
+    width:50%;
+    padding-top: 30px;
+
+}
+.prodetails .single-pro-details h4{
+    padding-top: 40px 0 20px 0;
+
+}
+.prodetails .single-pro-details {
+    display:block;
+    padding:5px 10px;
+    margin-bottom: 10px;
+}
