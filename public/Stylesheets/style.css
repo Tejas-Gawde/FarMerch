@@ -239,7 +239,7 @@ p{
     justify-content: center;
     align-items: center;
     align-items: flex-start;
-    background-image: url(Images/spices.jpg);
+    background-image: url(../Images/spices.jpg);
     min-width:580px;
     height: 50vh;
     background-size: cover;
@@ -278,7 +278,7 @@ button.white{
     border:1px solid  #088178;
 }
 .banner .banner-box2{   
-    background-image: url(Images/sugar.jpg);   
+    background-image: url(../Images/sugar.jpg);   
 }
 span{
     color: rgb(255, 0, 0);
