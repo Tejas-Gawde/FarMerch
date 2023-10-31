@@ -440,15 +440,15 @@ footer .copyw{
     width:20%;
     min-width: 90px;
     padding: 10px 12px;
-    border: 1px solid #555;
-    border-radius:25px;
+    border: 1px solid #a3a3a3;
+    border-radius:5px;
     cursor:pointer;
     box-shadow: 20px 20px 30px rgba(0,0,0, 0.1); 
     margin-bottom: 40px;   
 }
 .small-category .prod img{
     width:100%;
-    border-radius: 20px;   
+    border-radius: 5px;   
 }
 .row{
     justify-content: space-between;
