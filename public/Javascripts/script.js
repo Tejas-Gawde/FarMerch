@@ -13,6 +13,9 @@ var loginPassword = document.getElementById("loginPass");
 var register = document.getElementById("register");
 var login = document.getElementById("login");
 var status = document.getElementById("status");
+var checkoutbox = document.getElementById("checkout-box");
+var cart1 = document.getElementById("cart1");
+var cart2 = document.getElementById("cart2");
 
 //Logged in Default
 var loggedIn = false;
@@ -59,6 +62,29 @@ async function logincheck(data){
     else return
 }
 
+//Function to add to cart
+cart1.addEventListener('click', function() {
+    // Make an AJAX request to the server to update the cart content
+    fetch('/updateCart', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name: 'Product Name', price: '$15' }), // Replace with actual data
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // Create a new product element based on the data received
+        const productElement = document.createElement('p');
+        productElement.innerHTML = `<a href="#">${data.name}</a> <span class="price">${data.price}</span>`;
+
+        // Append the new product to the cart container
+        checkoutbox.appendChild(productElement);
+        // Update the cart content with the new data (e.g., the products array)
+        // You may need to reload the cart page or use client-side JavaScript to update the cart content
+      });
+  });
+  
 // Event Listener
 register.addEventListener('click', () => {
     registerUser();
@@ -66,4 +92,12 @@ register.addEventListener('click', () => {
 
 login.addEventListener('click',()=>{
     loginUser();
+});
+
+cart1.addEventListener('click',()=>{
+    addtoCart("Tomatoes", 50);
+});
+
+cart1.addEventListener('click',()=>{
+    addtoCart("Tomatoes", 50);
 });

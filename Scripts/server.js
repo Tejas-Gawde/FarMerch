@@ -3,6 +3,7 @@ const app = express();
 
 app.set("view engine", "ejs");
 app.use(express.static('./public'));
+app.use(express.json());
 
 app.get('/',(req, res)=>{
     res.render("index");
@@ -28,8 +29,5 @@ app.get('/seller',(req, res)=>{
     res.render("sellerpage");
 });
 
-app.get('/cart',(req, res)=>{
-    res.render("cart");
-});
 
 app.listen(3000);
