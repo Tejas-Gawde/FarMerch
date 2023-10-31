@@ -29,5 +29,9 @@ app.get('/seller',(req, res)=>{
     res.render("sellerpage");
 });
 
-
+app.get('/products/:item',(req, res)=>{
+    const item = req.params.item;
+    const price = Math.floor(Math.random() * (100 - 50) + 50);
+    res.render("sproduct",{item, price});
+})
 app.listen(3000);
