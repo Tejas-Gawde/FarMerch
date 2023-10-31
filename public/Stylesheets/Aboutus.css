@@ -70,3 +70,10 @@ html {
 .card img{
   height: 350px;
 }
+
+.our-vision{
+  text-align: center;
+  padding: 60px;
+  padding-left: 200px;
+  padding-right: 200px;
+}

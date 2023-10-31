@@ -28,4 +28,8 @@ app.get('/seller',(req, res)=>{
     res.render("sellerpage");
 });
 
+app.get('/cart',(req, res)=>{
+    res.render("cart");
+});
+
 app.listen(3000);
