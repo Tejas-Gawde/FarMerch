@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
+//Declaration of data
+let data = {}
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
@@ -32,6 +35,9 @@ router.get('/products/:item',(req, res)=>{
   res.render("sproduct",{item, price});
 })
 
+router.get('/cart',(req, res)=>{
+  res.render("cart",{data});
+});
 
 
 module.exports = router;
