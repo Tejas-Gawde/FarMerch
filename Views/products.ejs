@@ -33,35 +33,23 @@
         <ul class="header-button-list">
           <li><a href="/" type="button" class="btn btn-primary">Home</a></li>
           <li>
-            <a href="/products" type="button" class="btn btn-primary"
-              >Products</a
-            >
+            <a href="/products" type="button" class="btn btn-primary">Products</a>
           </li>
           <li>
-            <a href="/about-us" type="button" class="btn btn-primary"
-              >About Us</a
-            >
+            <a href="/about-us" type="button" class="btn btn-primary">About Us</a>
           </li>
           <li>
-            <a href="/contact-us" type="button" class="btn btn-primary"
-              >Contact Us</a
+            <a href="/contact-us" type="button" class="btn btn-primary">Contact Us</a
             >
           </li>
           <li>
             <div class="dropdown">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Account
               </button>
               <ul class="dropdown-menu drop">
                 <li>
-                  <a href="/customer" class="dropdown-item" href="#"
-                    >Customer</a
-                  >
+                  <a href="/customer" class="dropdown-item" href="#">Customer</a>
                 </li>
                 <li>
                   <a href="/seller" class="dropdown-item" href="#">Seller</a>
@@ -69,10 +57,9 @@
               </ul>
             </div>
           </li>
+          <a href="/cart" ><img src="Images/cart.png" width="30px" height="30px" class="cartlogo"/></a>
         </ul>
-        <a href="/cart"
-          ><img src="Images/cart.png" width="30px" height="30px"
-        /></a>
+        
       </nav>
     </div>
 
@@ -95,7 +82,7 @@
             <i class="fa fa-star-sharp"></i>
           </div>
           <p id="itemPrice">50</p>
-          <a><i class="fa-solid fa-cart-shopping" id="cart1"></i></a>
+          <button id="cart1">add</button>
           <a href="/products/Tomatoes" class="button-link">Buy Now</a>
         </div>
         <div class="prod">
@@ -362,6 +349,6 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-    <script src="../Javascripts/script.js" type="module"></script>
+    <script src="javascripts/addtocart.js" type="module"></script>
   </body>
 </html>

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 //Declaration of data
-let data = {}
+let cartdata = [];
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -12,6 +12,11 @@ router.get('/', function(req, res, next) {
 router.get('/products',(req, res)=>{
   res.render("products");
 });
+
+router.post('/products',(req, res)=>{
+  const { parcel } = req.body;
+  cartdata.push({itemName: parcel})
+})
 
 router.get('/about-us',(req, res)=>{
   res.render("aboutus");
@@ -36,7 +41,7 @@ router.get('/products/:item',(req, res)=>{
 })
 
 router.get('/cart',(req, res)=>{
-  res.render("cart",{data});
+  res.render("cart",{cartdata});
 });
 
 

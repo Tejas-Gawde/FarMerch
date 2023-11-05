@@ -6,11 +6,9 @@
 body{
     font-family: 'Poppins', sans-serif;
 }
-
 .section-p1{
     padding:40px 80px;
 }
-
 .site-navbar{
     display:flex;
     align-items:center;
@@ -53,6 +51,9 @@ p{
     padding-left: 25px;
     padding-right:25px ;
 }
+.cartlogo {
+    margin-top: 20px;
+}
 .row-elements{
     display:flex;
     align-items: center;
@@ -92,8 +93,6 @@ p{
 .site-header .row-elements{
     margin-left: 70px;
 }
-
-
 .categories{
     margin:60px 0;
 }
@@ -152,8 +151,6 @@ p{
     background-color: paleturquoise;
     margin-top: 10px;
 }
-
-
 .small-category{
     max-width: 1080px;
     margin:auto;   
@@ -212,7 +209,6 @@ p{
     left:50%;
     transform: translateX(-50%);
 }
-
 .offer{
     background: radial-gradient(white, lightblue);
     margin-top: 80px;
@@ -283,7 +279,6 @@ button.white{
 span{
     color: rgb(255, 0, 0);
 }
-
 .updates{
     display:flex;
     justify-content: space-between;
@@ -296,7 +291,6 @@ span{
     padding: 40px 80px;
     margin: 40px 0;
 }
-
 .updates h4{
     font-size: 22px;
     font-weight: 700;   
@@ -424,7 +418,6 @@ footer .copyw{
     font-family: sans-serif;
 }
 
-
 /*products*/
 .prod{
     flex-basis:20%;
@@ -455,7 +448,6 @@ footer .copyw{
     margin: 40px auto 50px;
     margin-left: 200px;
 }
-
 .small-category .prod .cart{
     width:40px;
     height:100px;
@@ -468,17 +460,14 @@ footer .copyw{
     bottom: 20px;
     right:10px;
 }
-
 .prodetails{
     display:flex;
     margin-top: 20px;
 }
-
 .prodetails .single-pro-image{
     width:40%;
     margin-right:50px;
 }
-
 .prodetails .single-pro-details{
     width:50%;
     padding-top: 30px;
