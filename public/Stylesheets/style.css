@@ -284,7 +284,7 @@ span{
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    background-image: url(Images/fruit\ back.jpg);
+    background-image: url(../Images/fruitback.jpg);
     background-repeat: no-repeat;
     background-position: 0% 100%;
     background-color: rgb(251, 255, 0);
@@ -481,4 +481,24 @@ footer .copyw{
     display:block;
     padding:5px 10px;
     margin-bottom: 10px;
+}
+
+
+/*Upload.ejs CSS*/
+.upload-body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px;
+}
+.form-border{
+    width: 550px;
+    border-radius: 8px;
+    border: 2px solid rgb(192, 191, 191);
+    margin: 1px;
+    padding-bottom: 15px;
+}
+.form-floating>label {
+    width: 116%;
+    top: -7.5px;
 }

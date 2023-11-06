@@ -44,5 +44,9 @@ router.get('/cart',(req, res)=>{
   res.render("cart",{cartdata});
 });
 
+router.get('/upload',(req, res)=>{
+  res.render("upload");
+});
+
 
 module.exports = router;
