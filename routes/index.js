@@ -52,4 +52,8 @@ router.get('/vegetable',(req, res)=>{
   res.render("vegetable");
 });
 
+router.get('/fruits',(req, res)=>{
+  res.render("fruits");
+});
+
 module.exports = router;
