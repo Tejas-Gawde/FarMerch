@@ -24,21 +24,23 @@
         <nav>
             <ul class="header-button-list">
                 <li><a href="/" type="button" class="btn btn-primary">Home</a> </li>
-                <li><a href="/products" type="button" class="btn btn-primary">Products</a>  </li>
+                <li><a href="/products" type="button" class="btn btn-primary">Products</a> </li>
                 <li><a href="/about-us" type="button" class="btn btn-primary">About Us</a> </li>
                 <li><a href="/contact-us" type="button" class="btn btn-primary">Contact Us</a> </li>
-                <li><div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Account
-                    </button>
-                    <ul class="dropdown-menu drop">
-                      <li><a href="/customer" class="dropdown-item" href="#">Customer</a></li>
-                      <li><a href="/seller" class="dropdown-item" href="#">Seller</a></li>
-                    </ul>
-                  </div>
+                <li>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Account
+                        </button>
+                        <ul class="dropdown-menu drop">
+                            <li><a href="/customer" class="dropdown-item" href="#">Customer</a></li>
+                            <li><a href="/seller" class="dropdown-item" href="#">Seller</a></li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
-            <a href="/cart" ><img src="Images/cart.png" width="30px" height="30px" class="cartlogo"/></a>
+            <a href="/cart"><img src="Images/cart.png" width="30px" height="30px" class="cartlogo" /></a>
         </nav>
     </div>
     <div class="site-header">
@@ -67,7 +69,7 @@
                 <div class="column-3">
                     <div class="box">
                         <img src="../Images/vegetables.jpg"></img>
-                        <h2>Vegetables</h2>
+                        <a href="/Views/vegetable.ejs"><h2>Vegetables</h2></a>
                     </div>
                 </div>
                 <div class="column-3">
@@ -139,7 +141,7 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
-                    
+
                 </div>
                 <p>Rs 50/kg</p>
                 <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
