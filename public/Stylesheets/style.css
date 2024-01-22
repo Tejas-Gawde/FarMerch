@@ -103,7 +103,7 @@ p{
 }
 .column-3 img{
     width: 100%;
-    
+    border-radius: 4px; 
 }
 .small-container{
     max-width: 1080px;
@@ -165,19 +165,21 @@ p{
 }
 .pro img{
     width:100%;
+    height: 300px;
 }
 .small-category .pro{
     width:20%;
+    height: 445px;
     min-width: 90px;
     padding: 10px 12px;
     border: 1px solid #555;
-    border-radius:25px;
+    border-radius: 7px;
     cursor:pointer;
     box-shadow: 20px 20px 30px rgba(0,0,0, 0.1);    
 }
 .small-category .pro img{
     width:100%;
-    border-radius: 20px;   
+    border-radius: 7px;   
 }
 .small-category .pro .cart{
     width:40px;

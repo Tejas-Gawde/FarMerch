@@ -48,5 +48,8 @@ router.get('/upload',(req, res)=>{
   res.render("upload");
 });
 
+router.get('/vegetable',(req, res)=>{
+  res.render("vegetable");
+});
 
 module.exports = router;
