@@ -1,4 +1,4 @@
-var express = require('express');
+import express from 'express';
 var router = express.Router();
 
 //Declaration of data
@@ -52,4 +52,4 @@ router.get('/vegetable',(req, res)=>{
   res.render("vegetable");
 });
 
-module.exports = router;
+export default router;
