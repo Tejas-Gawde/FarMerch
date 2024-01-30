@@ -52,4 +52,12 @@ router.get('/vegetable',(req, res)=>{
   res.render("vegetable");
 });
 
+router.get('/fruits',(req, res)=>{
+  res.render("fruits");
+});
+
+router.get('/fruits',(req, res)=>{
+  res.render("fruits");
+});
+
 export default router;
