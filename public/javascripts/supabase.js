@@ -1,4 +1,5 @@
-import {createClient} from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+import { createClient } from '@supabase/supabase-js' 
+
 // Create a single supabase client for interacting with your database
 export const supabase = createClient(
 "https://xkbaxhajuykyvvzstdfn.supabase.co",

@@ -1,12 +1,14 @@
 import express from 'express';
+import { itemArray } from '../public/javascripts/supabase-fetch.js';
 var router = express.Router();
+
 
 //Declaration of data
 let cartdata = [];
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('index', {data: itemArray});
 });
 
 router.get('/products',(req, res)=>{
