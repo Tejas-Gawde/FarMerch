@@ -1,11 +1,15 @@
 //Imports
-import express from 'express';
-import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
-import path from 'path';
+// Require express
+const express = require('express');
+
+// Require route files
+const indexRouter = require('./routes/index.js'); 
+const usersRouter = require('./routes/users.js');
+
+// Require path
+const path = require('path');
 
 var app = express();
-const __dirname = path.resolve();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -35,4 +39,4 @@ app.use(function(req, res, next) {
 app.listen(3000, () => {
   console.log('App listening on port 3000!');
 });
-export default app;
+module.exports =  app;

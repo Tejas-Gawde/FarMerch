@@ -61,8 +61,23 @@
     </div>
   </div>
 
-  <div class="small-category">
-    <div class="row-elements">
+  <div class="small-category-prod">
+    <div class="row-elements-prod">
+      <% itemArray.forEach(item => { %>
+        <div class="prod">
+            <img src="<%= item.url %>">
+            <h4><%= item.name %></h4>
+            <div class="rating">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-sharp"></i>
+            </div>
+            <p>Rs <%= item.price %>/kg</p>
+            <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
+        </div>
+        <% }) %>
       <div class="prod">
         <img src="Images/tomatoes.jpg" />
         <h4 id="itemName">Tomatoes</h4>
@@ -77,216 +92,7 @@
         <button id="cart1">add</button>
         <a href="/products/Tomatoes" class="button-link">Buy Now</a>
       </div>
-      <div class="prod">
-        <img src="Images/apples.jpg" />
-        <h4>Apples</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa-solid fa-star-half-stroke"></i>
-        </div>
-        <p>Rs 100/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" id="cart2"></i></a>
-        <a href="/products/Apples" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/toor dal.jpg" />
-        <h4>Toor-Dal</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 60/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Toor-Dal" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/potatoes.jpg" />
-        <h4>Potatoes</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Potatoes" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/Onions.jpg" />
-        <h4>Onions</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Onions" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/Bajra.jpg" />
-        <h4>Bajra</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Bajra" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/sugarr.jpg" />
-        <h4>Sugar</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Sugar" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/red chilli powder.jpg" />
-        <h4>Chilli Powder</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Chilli-Powder" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/banana.jpg" />
-        <h4>Bananas</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Bananas" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/grapes.jpg" />
-        <h4>Grapes</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Grapes" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/soyabean.jpg" />
-        <h4>Soyabean</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Soyabean" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/guava.jpg" />
-        <h4>Guava</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Guava" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/cabbage.jpg" />
-        <h4>Cabbage</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Cabbage" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/ladyfinger.jpg" />
-        <h4>Ladyfinger</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/LadyFinger" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/masoor dal.png" />
-        <h4>Masoor dal</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Marsoor-Dal" class="button-link">Buy Now</a>
-      </div>
-      <div class="prod">
-        <img src="Images/carrot.jpg" />
-        <h4>Carrot</h4>
-        <div class="rating">
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-        <p>Rs 50/kg</p>
-        <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-        <a href="/products/Carrot" class="button-link">Buy Now</a>
-      </div>
+      
     </div>
   </div>
 

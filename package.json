@@ -1,6 +1,6 @@
 {
   "main": "app.js",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
     "@supabase/supabase-js": "^2.39.3",
     "ejs": "^3.1.9",

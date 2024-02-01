@@ -1,18 +1,30 @@
-import express from 'express';
-import { itemArray } from '../public/javascripts/supabase-fetch.js';
+const express = require('express');
+const supabase = require('../public/javascripts/supabase.js') ;
+var itemArray = null;
+async function fetchData(){
+    let { data: items, error } = await supabase.from('items')
+  .select('*')
+  if (error) {
+    alert(error)
+}
+else {
+    console.log("success");
+    itemArray = items
+}
+}
+
 var router = express.Router();
-
-
 //Declaration of data
 let cartdata = [];
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {data: itemArray});
+  res.render('index', {itemArray});
 });
 
 router.get('/products',(req, res)=>{
-  res.render("products");
+  fetchData();
+  res.render("products",{itemArray});
 });
 
 router.post('/products',(req, res)=>{
@@ -62,4 +74,4 @@ router.get('/fruits',(req, res)=>{
   res.render("fruits");
 });
 
-export default router;
+module.exports = router;
