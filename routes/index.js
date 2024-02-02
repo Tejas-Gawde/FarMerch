@@ -1,6 +1,6 @@
 const express = require('express');
 const supabase = require('../public/javascripts/supabase.js') ;
-var itemArray = null;
+var itemArray ;
 async function fetchData(){
     let { data: items, error } = await supabase.from('items')
   .select('*')
