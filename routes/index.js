@@ -1,6 +1,6 @@
 const express = require('express');
 const supabase = require('../public/javascripts/supabase.js') ;
-var itemArray = null;
+var itemArray;
 async function fetchData(){
     let { data: items, error } = await supabase.from('items')
   .select('*')
@@ -19,7 +19,11 @@ let cartdata = [];
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', {itemArray});
+  fetchData();
+  setTimeout(()=>{
+    res.render('index', {itemArray});
+  }, 1500)
+  
 });
 
 router.get('/products',(req, res)=>{
