@@ -1,3 +1,4 @@
+// Importing Supabase
 import supabase from "./supabaseEsm.js";   
 
 // References
@@ -7,7 +8,7 @@ var itemPrice = document.getElementById('itemPrice');
 var itemUrl = document.getElementById('itemUrl');
 var itemDescp1 = document.getElementById('itemDescp1');
 var itemDescp2 = document.getElementById('itemDescp2');
-var itemDescp2 = document.getElementById('itemDescp3');
+var itemDescp3 = document.getElementById('itemDescp3');
 var uploadBtn = document.getElementById('upload');
 
 // Function to Upload to Supabase
@@ -27,7 +28,7 @@ async function uploadData() {
     ])
     .select();
     if (error) {
-        alert(error)
+        alert(error);
     }
     else {
         alert("Upload Successfull");

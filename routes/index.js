@@ -1,6 +1,12 @@
+// Imports
 const express = require('express');
-const supabase = require('../public/javascripts/supabase.js') ;
+const supabase = require('../public/javascripts/supabase.js');
+
+// Declarations
 var itemArray;
+let cartdata = [];
+
+// Functions
 async function fetchData(){
     let { data: items, error } = await supabase.from('items')
   .select('*')
@@ -14,8 +20,6 @@ else {
 }
 
 var router = express.Router();
-//Declaration of data
-let cartdata = [];
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
