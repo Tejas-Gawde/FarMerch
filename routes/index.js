@@ -27,12 +27,13 @@ router.get('/', function(req, res, next) {
   setTimeout(()=>{
     res.render('index', {itemArray});
   }, 1500)
-  
 });
 
 router.get('/products',(req, res)=>{
   fetchData();
-  res.render("products",{itemArray});
+  setTimeout(()=>{
+    res.render("products",{itemArray});
+  }, 1500)
 });
 
 router.post('/products',(req, res)=>{

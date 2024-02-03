@@ -69,8 +69,9 @@ p{
     min-width: 300px;
 }
 .column-2 img{
-    max-width: 100%;
-    padding:10px ;
+    height: 250px;
+    object-fit: cover;
+    padding: 10px;
     margin-left: 70px;
 }
 .column-2 h1{
@@ -104,7 +105,8 @@ p{
     margin:60px 0;
 }
 .column-3{
-    flex-basis: 30%;
+    display: flex;
+    justify-content: center;
     min-width: 250px;
     margin-bottom: 30px;
 }
@@ -113,19 +115,19 @@ p{
     border-radius: 4px; 
 }
 .small-container{
-    max-width: 1080px;
-    margin:auto;
+    display: flex;
+    justify-content: center;
     padding-left: 25px;
     padding-right: 25px;
 }
-.small-container h1{
+.categories h1{
     text-align: center;
     color:#555;  
     margin:0 auto 80px;
     position:relative;
     line-height: 60px;  
 }
-.small-container h1::after{
+.categories h1::after{
     content:'';
     background: orangered;
     width:100px;
@@ -148,7 +150,6 @@ p{
 }
 .column-3 .box:hover{
     box-shadow: 10px 10px 54px rgba(70,62,221,0.1);
-
 }
 .column-3 .box h2{
     display:inline-block;
@@ -159,12 +160,12 @@ p{
     margin-top: 10px;
 }
 .small-category{
-    width: 100%;
-    margin-left: 250px;  
+    display: flex;
+    justify-content: center;
 }
 .small-category-prod{
-    width: 100%;
-    margin-left: 150px;  
+    display: flex;
+    justify-content: center;  
 }
 .pro{
     flex-basis:30%;
@@ -191,6 +192,7 @@ p{
 .small-category .pro img{
     width:100%;
     border-radius: 7px;   
+    object-fit: cover;
 }
 .small-category .pro .cart{
     width:40px;
@@ -227,9 +229,7 @@ p{
     margin-top: 80px;
     padding: 30px 0;
 }
-.column-2 .offer-img{
-    padding:50px;
-}
+
 .column-2 h3{
     color: red;
 }
@@ -441,6 +441,7 @@ footer .copyw{
 }
 .prod img{
     width:100%;
+    height: 250px;
 }
 .small-category-prod .prod{
     min-width: 90px;
