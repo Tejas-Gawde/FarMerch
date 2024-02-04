@@ -65,6 +65,7 @@
     <div class="row-elements-prod">
       <% itemArray.forEach(item => { %>
         <div class="prod">
+          <a href="/products/<%= item.name %>">
             <img src="<%= item.url %>">
             <h4><%= item.name %></h4>
             <div class="rating">
@@ -76,6 +77,7 @@
             </div>
             <p>Rs <%= item.price %>/kg</p>
             <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
+          </a>
         </div>
         <% }) %>
       <div class="prod">
