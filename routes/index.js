@@ -79,8 +79,10 @@ router.get('/fruits',(req, res)=>{
   res.render("fruits");
 });
 
-router.get('/fruits',(req, res)=>{
-  res.render("fruits");
+router.get('/productpage',(req, res)=>{
+  res.render("productpage");
 });
+
+
 
 module.exports = router;

@@ -350,6 +350,7 @@ footer{
     display:flex;
     flex-wrap:wrap;
     justify-content:space-between;
+    background:radial-gradient(white, lightgreen );
 }
 footer .column{
     display:flex;
@@ -515,4 +516,50 @@ footer .copyw{
 .form-floating>label {
     width: 116%;
     top: -7.5px;
+}
+
+/*product page */
+.sproduct .row1{
+    display: flex;
+}
+
+.leftcolumn{
+    flex:1;
+}
+
+.leftcolumn img{
+    max-width: 85%; 
+    margin-left:40px; 
+    margin-top: 30px;
+    border: 5px solid rgb(192, 191, 191);
+    display: block;
+}
+.rightcolumn{
+    flex:1;
+    display: block;
+    margin-top: 30px;
+}
+.rightcolumn h4{
+    margin-top: 20px;
+}
+.rightcolumn h2{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.rightcolumn h1{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.rightcolumn h6{
+    color:#a3a3a3;
+}
+.rightcolumn select{
+    display: block;
+    padding: 5px 10px;
+}
+.rightcolumn button{
+    display: block;
+    padding: 5px 10px;
+    margin-top: 10px;
+    background-color:rgb(192, 191, 191);
 }
