@@ -11,7 +11,7 @@ var singleItem;
 async function fetchData(){
   let { data: items, error } = await supabase.from('items')
   .select('*')
-  .limit(6)
+  .limit(5)
   if (error) {
     console.log(error)
   }
