@@ -8,16 +8,27 @@ let cartdata = [];
 var singleItem;
 
 // Functions
-async function fetchData(){
+async function fetchDataLimit(){
   let { data: items, error } = await supabase.from('items')
   .select('*')
-  .limit(5)
+  .limit(6)
   if (error) {
     console.log(error)
   }
   else {
     console.log("success");
-    console.log(items);
+    itemArray = items
+  }
+}
+
+async function fetchData(){
+  let { data: items, error } = await supabase.from('items')
+  .select('*')
+  if (error) {
+    console.log(error)
+  }
+  else {
+    console.log("success");
     itemArray = items
   }
 }
@@ -39,22 +50,23 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  fetchData();
+  fetchDataLimit();
   setTimeout(()=>{
     res.render('index', {itemArray});
-  }, 1500)
+  }, 2000)
 });
 
 router.get('/products',(req, res)=>{
   fetchData();
   setTimeout(()=>{
     res.render("products",{itemArray});
-  }, 1500)
+  }, 2000)
 });
 
 router.post('/products',(req, res)=>{
-  const { parcel } = req.body;
-  cartdata.push({itemName: parcel})
+  const { itemName, itemPrice } = req.body;
+  cartdata.push({itemName: itemName, itemPrice: itemPrice})
+  console.log(cartdata);
 })
 
 router.get('/about-us',(req, res)=>{
@@ -83,6 +95,7 @@ router.get('/products/:item',(req, res)=>{
 })
 
 router.get('/cart',(req, res)=>{
+  console.log(cartdata);
   res.render("cart",{cartdata});
 });
 
