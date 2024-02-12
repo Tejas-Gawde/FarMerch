@@ -497,6 +497,14 @@ footer .copyw{
     padding:5px 10px;
     margin-bottom: 10px;
 }
+.cart-button{
+    border: 1px solid rgb(192, 191, 191);
+    border-radius: 5px;
+    width: 30px;
+}
+.cart-button:hover{
+    color: orange ;
+}
 
 
 /*Upload.ejs CSS*/
@@ -521,18 +529,20 @@ footer .copyw{
 /*product page */
 .sproduct .row1{
     display: flex;
+    flex-direction: row;
 }
 
-.leftcolumn{
-    flex:1;
+.leftcolumn {
+    width: 500px;
+    padding: 50px;
 }
-
 .leftcolumn img{
-    max-width: 80%; 
-    margin-left:40px; 
-    margin-top: 30px;
+    width: 100%;
+    height: 350px;
     border: 5px solid rgb(192, 191, 191);
     display: block;
+    border-radius: 15px;
+    object-fit: cover;
 }
 .rightcolumn{
     flex:1;

@@ -5,40 +5,68 @@ const supabase = require('../public/javascripts/supabase.js');
 // Declarations
 var itemArray;
 let cartdata = [];
+var singleItem;
 
 // Functions
-async function fetchData(){
-    let { data: items, error } = await supabase.from('items')
+async function fetchDataLimit(){
+  let { data: items, error } = await supabase.from('items')
   .select('*')
+  .limit(6)
   if (error) {
-    alert(error)
-}
-else {
+    console.log(error)
+  }
+  else {
     console.log("success");
     itemArray = items
+  }
 }
+
+async function fetchData(){
+  let { data: items, error } = await supabase.from('items')
+  .select('*')
+  if (error) {
+    console.log(error)
+  }
+  else {
+    console.log("success");
+    itemArray = items
+  }
+}
+
+async function fetchSingleData(itemName){
+  let { data: items, error } = await supabase.from('items')
+  .select()
+  .eq('name', itemName)
+  if (error) {
+    console.log(error)
+  }
+  else {
+    console.log("got single data");
+    singleItem = items[0]
+  }
 }
 
 var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  fetchData();
+  fetchDataLimit();
   setTimeout(()=>{
     res.render('index', {itemArray});
-  }, 1500)
+  }, 2000)
 });
 
 router.get('/products',(req, res)=>{
   fetchData();
   setTimeout(()=>{
     res.render("products",{itemArray});
-  }, 1500)
+  }, 2000)
 });
 
 router.post('/products',(req, res)=>{
-  const { parcel } = req.body;
-  cartdata.push({itemName: parcel})
+  const { itemName, itemPrice } = req.body;
+  cartdata.push({itemName: itemName, itemPrice: itemPrice})
+  console.log(cartdata);
 })
 
 router.get('/about-us',(req, res)=>{
@@ -58,12 +86,16 @@ router.get('/seller',(req, res)=>{
 });
 
 router.get('/products/:item',(req, res)=>{
-  const item = req.params.item;
-  const price = Math.floor(Math.random() * (100 - 50) + 50);
-  res.render("sproduct",{item, price});
+  const itemName = req.params.item;
+  fetchSingleData(itemName);
+  console.log(singleItem);
+  setTimeout(()=>{
+    res.render("productpage",{singleItem});
+  }, 1500)
 })
 
 router.get('/cart',(req, res)=>{
+  console.log(cartdata);
   res.render("cart",{cartdata});
 });
 
@@ -82,7 +114,5 @@ router.get('/fruits',(req, res)=>{
 router.get('/productpage',(req, res)=>{
   res.render("productpage");
 });
-
-
 
 module.exports = router;
