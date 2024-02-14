@@ -1,6 +1,5 @@
 // Importing createClient from cdn
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
-
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 // Creating a supabase client
 const supabase = createClient(
     "https://xkbaxhajuykyvvzstdfn.supabase.co",

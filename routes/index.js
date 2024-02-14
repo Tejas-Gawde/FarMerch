@@ -1,9 +1,9 @@
 // Imports
-const express = require('express');
-const supabase = require('../public/javascripts/supabase.js');
-
+import express from 'express';
+import supabase from '../public/javascripts/supabase.js';
 // Declarations
 var itemArray;
+var itemArrayLimit;
 let cartdata = [];
 var singleItem;
 
@@ -17,7 +17,7 @@ async function fetchDataLimit(){
   }
   else {
     console.log("success");
-    itemArray = items
+    itemArrayLimit = items
   }
 }
 
@@ -52,15 +52,15 @@ var router = express.Router();
 router.get('/', function(req, res, next) {
   fetchDataLimit();
   setTimeout(()=>{
-    res.render('index', {itemArray});
-  }, 2000)
+    res.render('index', {itemArrayLimit});
+  }, 1750)
 });
 
 router.get('/products',(req, res)=>{
   fetchData();
   setTimeout(()=>{
     res.render("products",{itemArray});
-  }, 2000)
+  }, 1750)
 });
 
 router.post('/products',(req, res)=>{
@@ -115,4 +115,4 @@ router.get('/productpage',(req, res)=>{
   res.render("productpage");
 });
 
-module.exports = router;
+export default router;

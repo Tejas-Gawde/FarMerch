@@ -1,8 +1,7 @@
 //Importing Supabase
 import supabase from "./supabaseEsm.js";   
-
 //Declarations
-var userId;
+export var userId;
 
 //References
 var regName = document.getElementById("regName");
@@ -39,23 +38,15 @@ async function loginUser(){
     }
     else{
         console.log(users)
-        userId = users.id;
+        global.userId = users.id;
     }
 }
-async function updateCart(){
-    const { data, error } = await supabase
-    .from('users')
-    .update({ other_column: 'otherValue' })
-    .eq('some_column', 'someValue')
-    .select()
-}
-
 //EventListeners
 register.addEventListener('click',()=>{
     registerUser();
 })
 login.addEventListener('click',()=>{
-    loginUser();
+    loginUser();  
 })
-
+ 
 export default userId;

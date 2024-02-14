@@ -1,13 +1,18 @@
 //Imports
 // Require express
-const express = require('express');
 
-// Require route files
-const indexRouter = require('./routes/index.js'); 
-const usersRouter = require('./routes/users.js');
+// ES6 imports
+import express from 'express';
 
-// Require path
-const path = require('path');
+// Import route files  
+import indexRouter from './routes/index.js';
+import usersRouter from './routes/users.js';
+
+// Import path
+import path from 'path';
+import { getGlobals } from 'common-es'
+const { __dirname, __filename } = getGlobals(import.meta.url)
+
 
 var app = express();
 
@@ -39,4 +44,4 @@ app.use(function(req, res, next) {
 app.listen(3000, () => {
   console.log('App listening on port 3000!');
 });
-module.exports =  app;
+export default app;
