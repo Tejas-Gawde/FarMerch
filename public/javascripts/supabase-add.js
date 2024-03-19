@@ -1,6 +1,7 @@
 import supabase from "./supabaseEsm.js"; 
 
 var cartArray = [];
+alert('hi')
 
 async function fetcharray(){
     let { data: users, error } = await supabase

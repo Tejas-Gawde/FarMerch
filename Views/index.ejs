@@ -1,209 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FarMerch | E-Commerce Website for Farmers</title>
-    <link href="../Stylesheets/style.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-</head>
+    <link href="../Stylesheets/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="site-navbar">
-        <div class="navbar-logo">
-            <img src="Images/logoo.png" width="150px">
-        </div>
-        <h3 class="site-name">FarMerch</h3>
-        <nav>
-            <ul class="header-button-list">
-                <li><a href="/" type="button" class="btn btn-primary">Home</a> </li>
-                <li><a href="/products" type="button" class="btn btn-primary">Products</a> </li>
-                <li><a href="/about-us" type="button" class="btn btn-primary">About Us</a> </li>
-                <li><a href="/contact-us" type="button" class="btn btn-primary">Contact Us</a> </li>
+      <div class="navbar-logo">
+        <img src="Images/logoo.png" width="150px" />
+      </div>
+      <h3 class="site-name">FarMerch</h3>
+      <nav>
+        <ul class="header-button-list">
+          <li><a href="/" type="button" class="btn btn-primary">Home</a></li>
+          <li>
+            <a href="/products" type="button" class="btn btn-primary"
+              >Products</a
+            >
+          </li>
+          <li>
+            <a href="/about-us" type="button" class="btn btn-primary"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a href="/contact-us" type="button" class="btn btn-primary"
+              >Contact Us</a
+            >
+          </li>
+          <li>
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Account
+              </button>
+              <ul class="dropdown-menu drop">
                 <li>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Account
-                        </button>
-                        <ul class="dropdown-menu drop">
-                            <li><a href="/customer" class="dropdown-item" href="#">Customer</a></li>
-                            <li><a href="/seller" class="dropdown-item" href="#">Seller</a></li>
-                        </ul>
-                    </div>
+                  <a href="/customer" class="dropdown-item" href="#"
+                    >Customer</a
+                  >
                 </li>
-            </ul>
-            <a href="/cart"><img src="Images/cart.png" width="30px" height="30px" class="cartlogo" /></a>
-        </nav>
+                <li>
+                  <a href="/seller" class="dropdown-item" href="#">Seller</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <a href="/cart"
+          ><img
+            src="Images/cart.png"
+            width="30px"
+            height="30px"
+            class="cartlogo"
+        /></a>
+      </nav>
     </div>
     <div class="site-header">
-        <div class="header-container">
-
-            <div class="small-container">
-                <div class="column-2">
-                    <h1>Organic and Fresh Veggies at your Doorstep!</h1>
-                    <p>Straight from the farm to your house without any middleman. And what's more?<br> At absolutely
-                        appropriate prices!</p>
-                    <a href="" class="btns">Explore Now &#8594;</a>
-                </div>
-                <div class="column-1">
-                    <img src="../Images/veggiess.png">
-
-                </div>
-            </div>
+      <div class="header-container">
+        <div class="small-container">
+          <div class="column-2">
+            <h1>Organic and Fresh Veggies at your Doorstep!</h1>
+            <p>
+              Straight from the farm to your house without any middleman. And
+              what's more?<br />
+              At absolutely appropriate prices!
+            </p>
+            <a href="" class="btns">Explore Now &#8594;</a>
+          </div>
+          <div class="column-1">
+            <img src="../Images/veggiess.png" />
+          </div>
         </div>
+      </div>
     </div>
 
     <!--------Featured Categories--------->
     <div class="categories">
-        <h1>Featured Categories</h1>
-        <div class="small-container">
-            
-            <div class="row-elements">
-                <div class="column-3">
-                    <div class="box">
-                        <img src="../Images/vegetables.jpg"></img>
-                        <a href="/vegetable"><h2>Vegetables</h2></a>
-                    </div>
-                </div>
-                <div class="column-3">
-                    <div class="box">
-                        <img src="../Images/fruits.jpg"></img>
-                        <a href="/fruits"><h2>Fruits</h2></a>
-                    </div>
-                </div>
-                <div class="column-3">
-                    <div class="box">
-                        <img src="../Images/cereals.png"></img>
-                        <h2>Cereals</h2>
-                    </div>
-                </div>
+      <h1>Featured Categories</h1>
+      <div class="small-container">
+        <div class="row-elements">
+          <div class="column-3">
+            <div class="box">
+              <img src="../Images/vegetables.jpg" />
+              <a href="/vegetable"><h2>Vegetables</h2></a>
             </div>
+          </div>
+          <div class="column-3">
+            <div class="box">
+              <img src="../Images/fruits.jpg" />
+              <a href="/fruits"><h2>Fruits</h2></a>
+            </div>
+          </div>
+          <div class="column-3">
+            <div class="box">
+              <img src="../Images/cereals.png" />
+              <h2>Cereals</h2>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
     <!----------Featured Products------------>
     <h1 class="title">Featured Products</h1>
     <div class="small-category">
-        <div class="row-elements">
-            <% itemArrayLimit.forEach(item => { %>
-                <div class="pro">
-                    <img src="<%= item.url %>">
-                    <h4><%= item.name %></h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star-sharp"></i>
-                    </div>
-                    <p>Rs <%= item.price %>/kg</p>
-                    <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-                </div>
-            <% }) %>
+      <div class="row-elements">
+        <% itemArrayLimit.forEach(item => { %>
+        <div class="pro">
+          <img src="<%= item.url %>" />
+          <h4><%= item.name %></h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-sharp"></i>
+          </div>
+          <p>Rs <%= item.price %>/kg</p>
+          <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
         </div>
+        <% }) %>
+      </div>
     </div>
     <!-------------Offer-------------->
     <div class="offer">
-        <div class="green veg">
-            <div class="small-category">
-                <div class="column-2">
-                    <img src="../Images/green vegetabless.png" class="offer-img">
-                </div>
-                <div class="column-2">
-                    <p>Exclusively available on FarMerch.</p><br>
-                    <h2>Fresh Green Vegetables at all time low prices!</h2>
-                    <h3>Get 50% Off on first order!</h3>
-                    <a href="" class="btns">Buy Now! &#8594;</a>
-                </div>
-            </div>
+      <div class="green veg">
+        <div class="small-category">
+          <div class="column-2">
+            <img src="../Images/green vegetabless.png" class="offer-img" />
+          </div>
+          <div class="column-2">
+            <p>Exclusively available on FarMerch.</p>
+            <br />
+            <h2>Fresh Green Vegetables at all time low prices!</h2>
+            <h3>Get 50% Off on first order!</h3>
+            <a href="" class="btns">Buy Now! &#8594;</a>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-------Banner-------->
     <div class="banner">
-        <div class="banner-box">
-            <h4>Crazy Deals</h4>
-            <h2>Cereals or Spices....</h2>
-            <p>We have got it all covered!</p>
-            <button class="white">Learn More</button>
-        </div>
-        <div class="banner-box banner-box2">
-            <h4>Crazy Deals</h4>
-            <h2>Buy 1kg and <BR>Get 1kg <span>FREE!</span></h2>
-            <p>Offer as sweet as our sugar.</p>
-            <button class="white">Buy Now</button>
-        </div>
+      <div class="banner-box">
+        <h4>Crazy Deals</h4>
+        <h2>Cereals or Spices....</h2>
+        <p>We have got it all covered!</p>
+        <button class="white">Learn More</button>
+      </div>
+      <div class="banner-box banner-box2">
+        <h4>Crazy Deals</h4>
+        <h2>Buy 1kg and <BR />Get 1kg <span>FREE!</span></h2>
+        <p>Offer as sweet as our sugar.</p>
+        <button class="white">Buy Now</button>
+      </div>
     </div>
 
     <!--------Updates--------->
     <div class="updates">
-        <div class="newstext">
-            <h4>Sign up for updates</h4>
-            <p>Get E-mail update about our latest products and <span>special offers</span></p>
-        </div>
-        <div class="form">
-            <input type="text" placeholder="Your email address">
-            <button class="normal">Sign Up</button>
-        </div>
+      <div class="newstext">
+        <h4>Sign up for updates</h4>
+        <p>
+          Get E-mail update about our latest products and
+          <span>special offers</span>
+        </p>
+      </div>
+      <div class="form">
+        <input type="text" placeholder="Your email address" />
+        <button class="normal">Sign Up</button>
+      </div>
     </div>
 
     <!---------Footer---------->
     <footer class="section-p1">
-        <div class="column">
-            <img class="logo" src="../Images/logoo.png">
-            <h4>Contact</h4>
-            <p><strong>Address:</strong>562 Sambhaji road,Mumbai-57</p>
-            <p><strong>Contact:</strong> +91 1234567891</p>
-            <p><strong>Hours:</strong>10:00 am - 18:00 pm, Mon-Fri</p>
-            <div class="follow">
-                <h4>Follow us</h4>
-                <div class="icon">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-pinterest-p"></i>
-                    <i class="fab fa-youtube"></i>
-                </div>
-            </div>
+      <div class="column">
+        <img class="logo" src="../Images/logoo.png" />
+        <h4>Contact</h4>
+        <p><strong>Address:</strong>562 Sambhaji road,Mumbai-57</p>
+        <p><strong>Contact:</strong> +91 1234567891</p>
+        <p><strong>Hours:</strong>10:00 am - 18:00 pm, Mon-Fri</p>
+        <div class="follow">
+          <h4>Follow us</h4>
+          <div class="icon">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-pinterest-p"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
         </div>
-        <div class="column">
-            <h4>About</h4>
-            <a href="#">About us</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms and Conditions</a>
-        </div>
-        <div class="column">
-            <h4>My Account</h4>
-            <a href="#">Sign in</a>
-            <a href="#">View cart</a>
-            <a href="#">My Wishlist</a>
-            <a href="#">Help</a>
-        </div>
-        <div class="payment">
-            <h4>Secured payment gateways</h4>
-            <img src="">
-        </div>
-        <div class="copyw">
-            <p><i class="fa-regular fa-copyright"></i> 2023, FarMerch.com</p>
-
-        </div>
-
+      </div>
+      <div class="column">
+        <h4>About</h4>
+        <a href="#">About us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms and Conditions</a>
+      </div>
+      <div class="column">
+        <h4>My Account</h4>
+        <a href="#">Sign in</a>
+        <a href="#">View cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Help</a>
+      </div>
+      <div class="payment">
+        <h4>Secured payment gateways</h4>
+        <img src="" />
+      </div>
+      <div class="copyw">
+        <p><i class="fa-regular fa-copyright"></i> 2023, FarMerch.com</p>
+      </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

@@ -1,167 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>All products | FarMerch</title>
-    <link href="../Stylesheets/style.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-</head>
+    <link href="../Stylesheets/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-<body>
+  <body>
     <div class="site-navbar">
-        <div class="navbar-logo">
-            <img src="../Images/logoo.png" width="150px">
-        </div>
-        <h3 class="site-name">FarMerch</h3>
-        <nav>
-            <ul class="header-button-list">
-                <li><a href="/" type="button" class="btn btn-primary">Home</a> </li>
-                <li><a href="/products" type="button" class="btn btn-primary">Products</a>  </li>
-                <li><a href="/about-us" type="button" class="btn btn-primary">About Us</a> </li>
-                <li><a href="/contact-us" type="button" class="btn btn-primary">Contact Us</a> </li>
-                <li><div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Account
-                    </button>
-                    <ul class="dropdown-menu drop">
-                        <li><a href="/customer" class="dropdown-item" href="#">Customer</a></li>
-                        <li><a href="/seller" class="dropdown-item" href="#">Seller</a></li>
-                    </ul>
-                  </div>
+      <div class="navbar-logo">
+        <img src="../Images/logoo.png" width="150px" />
+      </div>
+      <h3 class="site-name">FarMerch</h3>
+      <nav>
+        <ul class="header-button-list">
+          <li><a href="/" type="button" class="btn btn-primary">Home</a></li>
+          <li>
+            <a href="/products" type="button" class="btn btn-primary"
+              >Products</a
+            >
+          </li>
+          <li>
+            <a href="/about-us" type="button" class="btn btn-primary"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a href="/contact-us" type="button" class="btn btn-primary"
+              >Contact Us</a
+            >
+          </li>
+          <li>
+            <div class="dropdown">
+              <button
+                class="btn btn-secondary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Account
+              </button>
+              <ul class="dropdown-menu drop">
+                <li>
+                  <a href="/customer" class="dropdown-item" href="#"
+                    >Customer</a
+                  >
                 </li>
-            </ul>
-            <a href="/cart" ><img src="../Images/cart.png" width="30px" height="30px" class="cartlogo"/></a>
-        </nav>
+                <li>
+                  <a href="/seller" class="dropdown-item" href="#">Seller</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        <a href="/cart"
+          ><img
+            src="../Images/cart.png"
+            width="30px"
+            height="30px"
+            class="cartlogo"
+        /></a>
+      </nav>
     </div>
-    
+
     <div class="prodetails">
-        <div class="single-pro-image">
-            <img src="Images/tomatoes.jpg" width=100% alt="">
-        </div>
-        <div class="single-pro-details">
-            <h4><%= item %></h4>
-            <h2>Rs <%= price %>/kg</h2>
-            <select>
-                <option>Select Quantity</option>
-                <option>1 kg</option>
-                <option>1/2 kg</option>
-                <option>2 kg</option>
-                <option>700 g</option>
-            </select>
-            <button class="btns">Add to Cart</button>
-            <h4>Product Details</h4>
-            <p>.......</p>
-        </div>
+      <div class="single-pro-image">
+        <img src="Images/tomatoes.jpg" width="100%" alt="" />
+      </div>
+      <div class="single-pro-details">
+        <h4><%= item %></h4>
+        <h2>Rs <%= price %>/kg</h2>
+        <select>
+          <option>Select Quantity</option>
+          <option>1 kg</option>
+          <option>1/2 kg</option>
+          <option>2 kg</option>
+          <option>700 g</option>
+        </select>
+        <button class="btns">Add to Cart</button>
+        <h4>Product Details</h4>
+        <p>.......</p>
+      </div>
     </div>
 
     <div class="small-category">
-        <h1 class="title">Featured Products</h1>
-        <div class="row-elements">
-            <div class="pro">
-                <img src="../Images/tomatoes.jpg">
-                <h4>Tomatoes</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-sharp"></i>
-                </div>
-                <p>Rs 50/kg</p>
-                <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-            </div>
-            <div class="pro">
-                <img src="../Images/apples.jpg">
-                <h4>Apples</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa-solid fa-star-half-stroke"></i>
-                </div>
-                <p>Rs 100/kg</p>
-                <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-            </div>
-            <div class="pro">
-
-                <img src="../Images/toor dal.jpg">
-                <h4>Toor Dal</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                </div>
-                <p>Rs 60/kg</p>
-                <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
-            </div>
+      <h1 class="title">Featured Products</h1>
+      <div class="row-elements">
+        <div class="pro">
+          <img src="../Images/tomatoes.jpg" />
+          <h4>Tomatoes</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-sharp"></i>
+          </div>
+          <p>Rs 50/kg</p>
+          <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
         </div>
+        <div class="pro">
+          <img src="../Images/apples.jpg" />
+          <h4>Apples</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa-solid fa-star-half-stroke"></i>
+          </div>
+          <p>Rs 100/kg</p>
+          <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
+        </div>
+        <div class="pro">
+          <img src="../Images/toor dal.jpg" />
+          <h4>Toor Dal</h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+          <p>Rs 60/kg</p>
+          <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
+        </div>
+      </div>
     </div>
-    
 
-
-
-
-
-
-<!------------footer--------------->
+    <!------------footer--------------->
     <footer class="section-p1">
-        <div class="column">
-            <img class="logo" src="../Images/logoo.png">
-            <h4>Contact</h4>
-            <p><strong>Address:</strong>562 Sambhaji road,Mumbai-57</p>
-            <p><strong>Contact:</strong> +91 1234567891</p>
-            <p><strong>Hours:</strong>10:00 am - 18:00 pm, Mon-Fri</p>
-            <div class="follow">
-                <h4>Follow us</h4>
-                <div class="icon">
-                    <i class="fab fa-facebook-f"></i>
-                    <i class="fab fa-twitter"></i>
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-pinterest-p"></i>
-                    <i class="fab fa-youtube"></i>
-                </div>
-            </div>
+      <div class="column">
+        <img class="logo" src="../Images/logoo.png" />
+        <h4>Contact</h4>
+        <p><strong>Address:</strong>562 Sambhaji road,Mumbai-57</p>
+        <p><strong>Contact:</strong> +91 1234567891</p>
+        <p><strong>Hours:</strong>10:00 am - 18:00 pm, Mon-Fri</p>
+        <div class="follow">
+          <h4>Follow us</h4>
+          <div class="icon">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-pinterest-p"></i>
+            <i class="fab fa-youtube"></i>
+          </div>
         </div>
-        <div class="column">
-            <h4>About</h4>
-            <a href="/about-us">About us</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms and Conditions</a>
-        </div>
-        <div class="column">
-            <h4>My Account</h4>
-            <a href="#">Sign in</a>
-            <a href="#">View cart</a>
-            <a href="#">My Wishlist</a>
-            <a href="#">Help</a>
-        </div>
-        <div class="payment">
-            <h4>Secured payment gateways</h4>
-            <img src="">
-        </div>
-        <div class="copyw">
-            <p><i class="fa-regular fa-copyright"></i> 2023, FarMerch.com</p>
-
-        </div>
-
+      </div>
+      <div class="column">
+        <h4>About</h4>
+        <a href="/about-us">About us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms and Conditions</a>
+      </div>
+      <div class="column">
+        <h4>My Account</h4>
+        <a href="#">Sign in</a>
+        <a href="#">View cart</a>
+        <a href="#">My Wishlist</a>
+        <a href="#">Help</a>
+      </div>
+      <div class="payment">
+        <h4>Secured payment gateways</h4>
+        <img src="" />
+      </div>
+      <div class="copyw">
+        <p><i class="fa-regular fa-copyright"></i> 2023, FarMerch.com</p>
+      </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
