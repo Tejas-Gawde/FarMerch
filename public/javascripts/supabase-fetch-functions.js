@@ -37,3 +37,16 @@ export async function fetchSingleData(itemName) {
         return items[0]
     }
 }
+
+export async function fetchCategory(categoryName) {
+    let { data: items, error } = await supabase.from('items')
+        .select()
+        .eq('category', categoryName)
+    if (error) {
+        console.log(error)
+    }
+    else {
+        console.log("got category data");
+        return items
+    }
+}

@@ -1,6 +1,6 @@
 // Imports
 import express from 'express';
-import { fetchData, fetchDataLimit, fetchSingleData } from '../public/javascripts/supabase-fetch-functions.js';
+import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory } from '../public/javascripts/supabase-fetch-functions.js';
 
 // Declaration
 let cartdata = [];
@@ -23,6 +23,12 @@ router.get('/products/:item', async (req, res) => {
   const itemName = req.params.item;
   const singleItem = await fetchSingleData(itemName);
   res.render("productpage", { singleItem });
+})
+
+router.get('/category=:categoryName', async (req, res) => {
+  const itemName = req.params.categoryName;
+  const categoryData = await fetchCategory(itemName);
+  res.render("category", { categoryData, itemName });
 })
 
 router.post('/products', (req, res) => {
