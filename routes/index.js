@@ -1,6 +1,7 @@
 // Imports
 import express from 'express';
 import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory } from '../public/javascripts/supabase-fetch-functions.js';
+import { addToCart, fetchID, getNameandPrice, loginUser } from '../public/javascripts/supabase-add.js';
 
 // Declaration
 let cartdata = [];
@@ -37,6 +38,18 @@ router.post('/products', (req, res) => {
   console.log(cartdata);
 })
 
+router.post('/addtocart', async (req, res) => {
+  const { productId, productQuantity } = req.body;
+  console.log(productId, productQuantity);
+  res.send(await addToCart(productId, productQuantity));
+})
+
+router.post('/login', async (req, res) => {
+  const { Email, Password } = req.body;
+  loginUser(Email, Password);
+  res.send("nice");
+})
+
 router.get('/about-us', (req, res) => {
   res.render("aboutus");
 });
@@ -53,9 +66,10 @@ router.get('/seller', (req, res) => {
   res.render("sellerpage");
 });
 
-router.get('/cart', (req, res) => {
-  console.log(cartdata);
-  res.render("cart", { cartdata });
+router.get('/cart', async (req, res) => {
+  const cartArray = await getNameandPrice(await fetchID());
+
+  res.render("cart", { cartArray });
 });
 
 router.get('/upload', (req, res) => {

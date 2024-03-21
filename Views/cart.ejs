@@ -201,10 +201,10 @@
               ><i class="fa fa-shopping-cart"></i> <b>4</b></span
             >
           </h4>
-          <% cartdata.forEach(function(cartdata) { %>
+          <% cartArray.forEach(function(item) { %>
           <p>
-            <a href="#"><%= cartdata.itemName %></a>
-            <span class="price">$15</span>
+            <a href="#"><%= item.name %></a>
+            <span class="price"><%= item.price %></span>
           </p>
           <% }); %>
           <hr />
