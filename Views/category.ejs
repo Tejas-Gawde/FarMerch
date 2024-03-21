@@ -9,7 +9,7 @@
     />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>All products | FarMerch</title>
+    <title><%= itemName %> | FarMerch</title>
     <link href="../Stylesheets/style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -83,13 +83,13 @@
 
     <div class="heading">
       <div class="row">
-        <h2>All Products</h2>
+        <h2>Category: <%= itemName %></h2>
       </div>
     </div>
 
     <div class="small-category-prod">
       <div class="row-elements-prod">
-        <% itemArray.forEach(item => { %>
+        <% categoryData.forEach(item => { %>
         <div class="prod">
           <img src="<%= item.url %>" />
           <a href="/products/<%= item.name %>">
@@ -108,20 +108,6 @@
           </button>
         </div>
         <% }) %>
-        <div class="prod">
-          <img src="Images/tomatoes.jpg" />
-          <h4 id="itemName">Tomatoes</h4>
-          <div class="rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-sharp"></i>
-          </div>
-          <p id="itemPrice">Rs 50</p>
-          <button id="cart1">add</button>
-          <a href="/products/Tomatoes" class="button-link">Buy Now</a>
-        </div>
       </div>
     </div>
 
@@ -176,6 +162,5 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-    <script type="module" src="/javascripts/supabase-add.js"></script>
   </body>
 </html>

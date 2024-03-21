@@ -1,5 +1,5 @@
 // Importing Supabase
-import supabase from "./supabaseEsm.js";   
+import { supabase } from "./supabaseEsm.js";
 
 // References
 var itemCategory = document.getElementById('selectCategory');
@@ -7,26 +7,22 @@ var itemName = document.getElementById('itemName');
 var itemPrice = document.getElementById('itemPrice');
 var itemUrl = document.getElementById('itemUrl');
 var itemDescp1 = document.getElementById('itemDescp1');
-var itemDescp2 = document.getElementById('itemDescp2');
-var itemDescp3 = document.getElementById('itemDescp3');
 var uploadBtn = document.getElementById('upload');
 
 // Function to Upload to Supabase
 async function uploadData() {
     const { data, error } = await supabase
-    .from('items')
-    .insert([
-        { 
-            category: itemCategory.value,
-            name: itemName.value, 
-            price: itemPrice.value, 
-            url: itemUrl.value, 
-            descp1: itemDescp1.value, 
-            descp2: itemDescp2.value, 
-            descp3: itemDescp3.value, 
-        },
-    ])
-    .select();
+        .from('items')
+        .insert([
+            {
+                category: itemCategory.value,
+                name: itemName.value,
+                price: itemPrice.value,
+                url: itemUrl.value,
+                descp1: itemDescp1.value,
+            },
+        ])
+        .select();
     if (error) {
         alert(error);
     }
@@ -37,7 +33,7 @@ async function uploadData() {
 
 }
 // EventListeners
-uploadBtn.addEventListener('click',()=>{
+uploadBtn.addEventListener('click', () => {
     uploadData();
 })
 
