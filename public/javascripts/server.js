@@ -66,8 +66,8 @@ app.use(express.static('public'));
 app.use(express.json());
 
 const stripeGateway = stripe(process.env.STRIPE_API_KEY);
-const DOMAIN = process.env.DOMAIN;
-var STRIPE_API_KEY=sk_test_51Ojn5ZSJwKcrTRWW1xbo8YOA9MKJX2JyZebD2Wf645rIRW1wzSBPIRcUBDaW120WrqdCSMgJ1QTXfkaENo0hzsVA00Nr4fUdyj;
+const DOMAIN = process.env.DOMAIN; 
+
 
 
 // Route handler for creating a Stripe Checkout session
@@ -77,9 +77,10 @@ app.post('/stripe-checkout', async (req, res) => {
             price_data: {
                 currency: 'usd',
                 product_data: {
-                    name: item.itemName,
+                    name: 'Tomatoes',
+
                 },
-                unit_amount: item.itemPrice * 100, // Convert item price to cents
+                unit_amount: 50 * 100, // Convert item price to cents
             },
             quantity: 1,
         };
