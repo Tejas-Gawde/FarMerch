@@ -59,3 +59,33 @@ export async function getSession() {
     }
     else console.log('No session found');
 }
+
+export async function signUpNewUser(email, password, username) {
+    const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+            data: {
+                display_name: username,
+            },
+        },
+    });
+    if (error) {
+        console.log(error.messaage);
+    } else {
+        const userId = await getSession();
+        await createUserRow(userId);
+    }
+}
+
+async function createUserRow(value) {
+    const { data, error } = await supabase
+        .from("users")
+        .insert([{ userID: value }])
+        .select();
+    if (error) {
+        console.log(error.message);
+    } else {
+        console.log("successfully created user row");
+    }
+}
