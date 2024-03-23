@@ -50,3 +50,12 @@ export async function fetchCategory(categoryName) {
         return items
     }
 }
+
+export async function getSession() {
+    const { data, error } = await supabase.auth.getSession()
+    if (data.session != null) {
+        console.log('Session:', data.session.user.id);
+        return data.session.user.id;
+    }
+    else console.log('No session found');
+}

@@ -89,12 +89,21 @@
           <h6>Home/<%= singleItem.category %></h6>
           <h1><%= singleItem.name %></h1>
           <h2>Rs <%= singleItem.price %>/kg</h2>
-          <select class="3">
-            <option>Select Quantity</option>
-            <option>200g</option>
-            <option>500g</option>
-            <option>1 kg</option>
+          <% if (singleItem.category === 'Grains') { %>
+          <select id="quantity-input" aria-placeholder="select">
+            <option value="invalid">Choose quantity</option>
+            <option value="1">1 kg</option>
+            <option value="5">5 kg</option>
+            <option value="10">10 kg</option>
           </select>
+          <% } else { %>
+          <select id="quantity-input">
+            <option value="invalid">Choose quantity</option>
+            <option value="0.2">200 gm</option>
+            <option value="0.5">500 gm</option>
+            <option value="1">1 kg</option>
+          </select>
+          <% } %>
           <button
             class="btn btn-secondary m-2"
             type="button"
@@ -106,13 +115,55 @@
             class="btn btn-secondary m-2"
             type="button"
             aria-expanded="false"
+            onclick="sendData('/addtocart')"
           >
             Buy Now
           </button>
+
           <h4>Product Details</h4>
           <p><%= singleItem.descp1 %></p>
         </div>
       </div>
     </section>
+    <script>
+      function sendData(url) {
+        const selectElement = document.getElementById("quantity-input");
+        const selectValue = selectElement.value;
+
+        if(selectValue=='invalid') return alert("Please choose quantity");
+
+        const data = {
+          productId: <%= singleItem.id %>,
+          productQuantity: selectValue
+        };
+
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        };
+
+        fetch(url, options)
+          .then(response => response)
+          .then(data => {
+            console.log("Success:", data);
+          })
+          .catch(error => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
