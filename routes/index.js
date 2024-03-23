@@ -74,4 +74,10 @@ router.get('/productpage', (req, res) => {
   res.render("productpage");
 });
 
+router.get('/cancel', (req, res) => {
+  res.render("cancel");
+});
+router.get('/success', (req, res) => {
+  res.render("success");
+});
 export default router;
