@@ -67,8 +67,8 @@ app.use(express.json());
 
 const stripeGateway = stripe(process.env.STRIPE_API_KEY);
 const DOMAIN = process.env.DOMAIN;
+var STRIPE_API_KEY=sk_test_51Ojn5ZSJwKcrTRWW1xbo8YOA9MKJX2JyZebD2Wf645rIRW1wzSBPIRcUBDaW120WrqdCSMgJ1QTXfkaENo0hzsVA00Nr4fUdyj;
 
-// Other route handlers (defined in your current code snippet)...
 
 // Route handler for creating a Stripe Checkout session
 app.post('/stripe-checkout', async (req, res) => {
