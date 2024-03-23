@@ -13,7 +13,7 @@ import usersRouter from './routes/users.js';
 // Import path
 import path from 'path';
 import { getGlobals } from 'common-es'
-const { __dirname, __filename } = getGlobals(import.meta.url)
+const { __dirname } = getGlobals(import.meta.url)
 
 
 var app = express();

@@ -1,6 +1,6 @@
 // Imports
 import express from 'express';
-import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory } from '../public/javascripts/supabase-fetch-functions.js';
+import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory, signUpNewUser } from '../public/javascripts/supabase-fetch-functions.js';
 import { addToCart, fetchID, getNameandPrice, loginUser } from '../public/javascripts/supabase-add.js';
 
 // Declaration
@@ -46,7 +46,13 @@ router.post('/addtocart', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   const { Email, Password } = req.body;
-  loginUser(Email, Password);
+  await loginUser(Email, Password);
+  res.send("nice");
+})
+
+router.post('/register', async (req, res) => {
+  const { Email, Password, Username } = req.body;
+  await signUpNewUser(Email, Password, Username);
   res.send("nice");
 })
 

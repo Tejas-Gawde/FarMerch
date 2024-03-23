@@ -76,7 +76,7 @@
               class="btn btn-primary"
               type="submit"
               id="login"
-              onclick="sendData('/login')"
+              onclick="sendLogin('/login')"
             >
               Login
             </button>
@@ -119,7 +119,12 @@
             <label for="floatingPassword">Password</label>
           </div>
           <div class="submit-button">
-            <button class="btn btn-primary" type="submit" id="register">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              id="register"
+              onclick="sendRegister('/register')"
+            >
               Register
             </button>
           </div>
@@ -127,7 +132,36 @@
       </div>
     </div>
     <script>
-      function sendData(url) {
+      function sendRegister(url) {
+        const email = document.getElementById("regEmail");
+        const password = document.getElementById("regPass");
+        const username = document.getElementById("regName");
+
+        const data = {
+          Email: email.value,
+          Password: password.value,
+          Username: username.value,
+        };
+
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        };
+
+        fetch(url, options)
+          .then((response) => response)
+          .then((data) => {
+            console.log("Success:", data);
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+
+      function sendLogin(url) {
         const email = document.getElementById("loginEmail");
         const password = document.getElementById("loginPass");
 
