@@ -56,6 +56,8 @@ router.post('/register', async (req, res) => {
   res.send("nice");
 })
 
+
+
 router.get('/about-us', (req, res) => {
   res.render("aboutus");
 });
@@ -72,10 +74,10 @@ router.get('/seller', (req, res) => {
   res.render("sellerpage");
 });
 
-router.get('/cart', async (req, res) => {
+router.get('/checkout', async (req, res) => {
   const cartArray = await getNameandPrice(await fetchID());
 
-  res.render("cart", { cartArray });
+  res.render("checkout", { cartArray });
 });
 
 router.get('/upload', (req, res) => {
@@ -100,4 +102,9 @@ router.get('/cancel', (req, res) => {
 router.get('/success', (req, res) => {
   res.render("success");
 });
+
+router.get('/cart', (req, res) => {
+  res.render("cart");
+});
+
 export default router;

@@ -15,9 +15,9 @@ paybtn.addEventListener('click',() => {
     .catch((err) => console.log(err));
 });*/
 
-const paybtn = document.querySelector('checkoutbtn');
+const checkout = document.querySelector('#checkout');
 
-paybtn.addEventListener('click', () => {
+checkout.addEventListener('click', () => {
     fetch('/stripe-checkout', {
         method: 'post',
         headers: new Headers({ 'Content-Type': 'application/json' }),
