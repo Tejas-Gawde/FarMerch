@@ -26,7 +26,7 @@ export async function addToCart(id, quantity) {
         .eq('userID', UserID)
         .select()
     if (error) {
-        alert(error)
+        console.log(error)
     }
     console.log(data)
     return 'Item added to cart!'
@@ -38,7 +38,7 @@ export async function loginUser(email, password) {
         password: password,
     })
     if (error) {
-        alert(error)
+        console.log(error)
     }
     else {
         getSession();
