@@ -29,12 +29,13 @@ export async function fetchSingleData(itemName) {
     let { data: items, error } = await supabase.from('items')
         .select()
         .eq('name', itemName)
+        .single()
     if (error) {
         console.log(error)
     }
     else {
         console.log("got single data");
-        return items[0]
+        return items;
     }
 }
 
@@ -87,5 +88,72 @@ async function createUserRow(value) {
         console.log(error.message);
     } else {
         console.log("successfully created user row");
+    }
+}
+
+export async function fetcharray(UserID) {
+    let { data: users, error } = await supabase
+        .from('users')
+        .select('cartID, cartQuantity, cart')
+        .eq('userID', UserID)
+        .single()
+    console.log("Fetching cart array for user: ", users);
+    return users;
+}
+
+export async function addToCart(id, quantity, cartData) {
+    const UserID = await getSession();
+    if (UserID == null) {
+        return 'No user logged in'
+    }
+    const fetchedArray = await fetcharray(UserID);
+    console.log(fetchedArray);
+    fetchedArray.cartID.push(id)
+    fetchedArray.cartQuantity.push(quantity)
+    fetchedArray.cart.push(cartData)
+    const { data, error } = await supabase
+        .from('users')
+        .update({ cart: fetchedArray.cart })
+        .eq('userID', UserID)
+        .select()
+    if (error) {
+        console.log(error)
+    }
+    console.log(data)
+    return 'Item added to cart!'
+}
+
+export async function loginUser(email, password) {
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+    })
+    if (error) {
+        console.log(error)
+    }
+    else {
+        getSession();
+    }
+}
+
+export async function getNameandPrice(id) {
+    const { data, error } = await supabase
+        .from('items')
+        .select('name, price')
+        .in('id', id)
+    if (error) console.log(error)
+    else return data;
+}
+
+export async function fetchID() {
+    const UserID = await getSession();
+    const { data, error } = await supabase
+        .from('users')
+        .select('cartID')
+        .eq('userID', UserID)
+        .single()
+    if (error) console.log(error)
+    else {
+        return data.cartID;
     }
 }

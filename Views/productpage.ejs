@@ -10,7 +10,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= singleItem.name %> | FarMerch</title>
-    <link href="../Stylesheets/style.css" rel="stylesheet" />
+    <link href="../stylesheets/style.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -87,54 +87,61 @@
         </div>
         <div class="rightcolumn">
           <h6>Home/<%= singleItem.category %></h6>
-          <h1><%= singleItem.name %></h1>
-          <h2>Rs <%= singleItem.price %>/kg</h2>
-          <% if (singleItem.category === 'Grains') { %>
-          <select id="quantity-input" aria-placeholder="select">
-            <option value="invalid">Choose quantity</option>
-            <option value="1">1 kg</option>
-            <option value="5">5 kg</option>
-            <option value="10">10 kg</option>
-          </select>
-          <% } else { %>
-          <select id="quantity-input">
-            <option value="invalid">Choose quantity</option>
-            <option value="0.2">200 gm</option>
-            <option value="0.5">500 gm</option>
-            <option value="1">1 kg</option>
-          </select>
-          <% } %>
-          <button
-            class="btn btn-secondary m-2"
-            type="button"
-            aria-expanded="false"
-          >
-            Add to Cart
-          </button>
-          <button
-            class="btn btn-secondary m-2"
-            type="button"
-            aria-expanded="false"
-            onclick="sendData('/addtocart')"
-          >
-            Buy Now
-          </button>
-
+          <h1><%= singleItem.name %> (<%= singleItem.quantity %>)</h1>
+          <h2>Price: Rs <%= singleItem.price %></h2>
+          <p>Quantity:</p>
+          <div class="quantity-div">
+            <button class="minus-btn" onclick="decrement()">
+              <i class="fa-solid fa-minus"></i>
+            </button>
+            <input type="text" class="quantity-input" value="1" />
+            <button class="plus-btn" onclick="increment()">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <div class="product-btn-div">
+            <button
+              class="btn btn-secondary m-2"
+              type="button"
+              aria-expanded="false"
+              onclick="sendData('/addtocart')"
+            >
+              Add to Cart
+            </button>
+            <button
+              class="btn btn-secondary m-2"
+              type="button"
+              aria-expanded="false"
+            >
+              Buy Now
+            </button>
+          </div>
           <h4>Product Details</h4>
           <p><%= singleItem.descp1 %></p>
         </div>
       </div>
     </section>
     <script>
-      function sendData(url) {
-        const selectElement = document.getElementById("quantity-input");
-        const selectValue = selectElement.value;
+      let quantityInput = document.querySelector(".quantity-input");
+       function decrement(){
+        if(quantityInput.value <= 1) quantityInput.value = 1;
+        else quantityInput.value = parseInt(quantityInput.value) - 1;
+       }
 
-        if(selectValue=='invalid') return alert("Please choose quantity");
+      function increment(){
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+       }
+
+      function sendData(url) {
+        const dataToInsert = {
+          id: parseInt(<%= singleItem.id %>),
+          quantity: parseInt(quantityInput.value)
+        };
 
         const data = {
           productId: <%= singleItem.id %>,
-          productQuantity: selectValue
+          productQuantity: quantityInput.value,
+          cartData: dataToInsert
         };
 
         const options = {

@@ -2,14 +2,15 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import stripe from 'stripe';
-import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory, signUpNewUser } from '../public/javascripts/supabase-fetch-functions.js';
-import { addToCart, fetchID, getNameandPrice, loginUser } from '../public/javascripts/supabase-add.js';
+import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory, signUpNewUser, getSession, addToCart, fetchID, fetcharray, getNameandPrice, loginUser } from '../public/javascripts/supabase-backend-functions.js';
+
 dotenv.config();
 // Declaration
 let cartdata = [];
-
-
 var router = express.Router();
+
+const stripeGateway = stripe(process.env.STRIPE_API_KEY);
+const DOMAIN = process.env.DOMAIN;
 
 /* GET home page. */
 router.get('/', async (req, res, next) => {
@@ -41,14 +42,16 @@ router.post('/products', (req, res) => {
 })
 
 router.post('/addtocart', async (req, res) => {
-  const { productId, productQuantity } = req.body;
+  const { productId, productQuantity, cartData } = req.body;
   console.log(productId, productQuantity);
-  res.send(await addToCart(productId, productQuantity));
+  res.send(await addToCart(productId, productQuantity, cartData));
 })
 
 router.post('/login', async (req, res) => {
   const { Email, Password } = req.body;
   await loginUser(Email, Password);
+  const UserID = await getSession();
+  await fetcharray(UserID);
   res.send("nice");
 })
 
@@ -57,8 +60,6 @@ router.post('/register', async (req, res) => {
   await signUpNewUser(Email, Password, Username);
   res.send("nice");
 })
-
-
 
 router.get('/about-us', (req, res) => {
   res.render("aboutus");
@@ -102,51 +103,39 @@ router.get('/cart', (req, res) => {
   res.render("cart");
 });
 
-const stripeGateway = stripe(process.env.STRIPE_API_KEY);
-const DOMAIN = process.env.DOMAIN; 
-
-
-
-// Route handler for creating a Stripe Checkout session
 router.post('/stripe-checkout', async (req, res) => {
-    const lineItems = req.body.items.map((item) => {
-        return {
-            price_data: {
-                currency: 'usd',
-                product_data: {
-                    name: 'Tomatoes',
-
-                },
-                unit_amount: 50 * 100, // Convert item price to cents
-            },
-            quantity: 1,
-        };
+  try {
+    const session = await stripeGateway.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [{
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: 'Tomatoes',
+          },
+          unit_amount: 50 * 100, // Convert item price to cents
+        },
+        quantity: 1,
+      }],
+      mode: 'payment',
+      success_url: `${DOMAIN}/success`,
+      cancel_url: `${DOMAIN}/cancel`,
     });
-
-    try {
-        const session = await stripeGateway.checkout.sessions.create({
-            payment_method_types: ['card'],
-            line_items: lineItems,
-            mode: 'payment',
-            success_url: `${DOMAIN}/success`,
-            cancel_url: `${DOMAIN}/cancel`,
-        });
-
-        res.json({ sessionUrl: session.url });
-    } catch (error) {
-        console.error('Error creating Stripe Checkout session:', error);
-        res.status(500).json({ error: 'Failed to create Stripe Checkout session' });
-    }
+    res.json({ sessionUrl: session.url });
+  } catch (error) {
+    console.error('Error creating Stripe Checkout session:', error);
+    res.status(500).json({ error: 'Failed to create Stripe Checkout session' });
+  }
 });
 
 // Route handler for handling payment success
 router.get('/success', (req, res) => {
-    res.render('success'); // Render success page
+  res.render('success'); // Render success page
 });
 
 // Route handler for handling payment cancellation
 router.get('/cancel', (req, res) => {
-    res.render('cancel'); // Render cancellation page
+  res.render('cancel'); // Render cancellation page
 });
 
 export default router;
