@@ -2,7 +2,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import stripe from 'stripe';
-import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory, signUpNewUser, getSession, addToCart, fetchID, fetcharray, getNameandPrice, loginUser } from '../public/javascripts/supabase-backend-functions.js';
+import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory, signUpNewUser, addToCart, fetchID, fetchCartDetails, loginUser, fetchCart } from '../public/javascripts/supabase-backend-functions.js';
+import { combineCartAndProductData } from '../public/javascripts/backend-functions.js';
 
 dotenv.config();
 // Declaration
@@ -42,16 +43,15 @@ router.post('/products', (req, res) => {
 })
 
 router.post('/addtocart', async (req, res) => {
-  const { productId, productQuantity, cartData } = req.body;
-  console.log(productId, productQuantity);
-  res.send(await addToCart(productId, productQuantity, cartData));
+  const { cartData } = req.body;
+  console.log('cartdaata is', cartData);
+  const response = await addToCart(cartData);
+  res.send(response);
 })
 
 router.post('/login', async (req, res) => {
   const { Email, Password } = req.body;
   await loginUser(Email, Password);
-  const UserID = await getSession();
-  await fetcharray(UserID);
   res.send("nice");
 })
 
@@ -77,12 +77,6 @@ router.get('/seller', (req, res) => {
   res.render("sellerpage");
 });
 
-router.get('/checkout', async (req, res) => {
-  const cartArray = await getNameandPrice(await fetchID());
-
-  res.render("checkout", { cartArray });
-});
-
 router.get('/upload', (req, res) => {
   res.render("upload");
 });
@@ -99,24 +93,38 @@ router.get('/productpage', (req, res) => {
   res.render("productpage");
 });
 
-router.get('/cart', (req, res) => {
-  res.render("cart");
+router.get('/cart', async (req, res) => {
+  const cart = await fetchCart();
+  if (cart) {
+    console.log(cart);
+    const cartItems = await fetchCartDetails(cart.map(item => item.id));
+    const finalCart = combineCartAndProductData(cart, cartItems);
+    res.render("cart", { finalCart });
+  }
+  else {
+    res.render("cart", { finalCart: [] });
+  }
 });
 
 router.post('/stripe-checkout', async (req, res) => {
+  const cart = await fetchCart();
+  const cartItems = await fetchCartDetails(cart.map(item => item.id));
+  const finalCart = combineCartAndProductData(cart, cartItems);
+  const finalProduct = finalCart.map(item => ({
+    price_data: {
+      currency: 'inr',
+      product_data: {
+        name: item.name,
+        images: [item.url]
+      },
+      unit_amount: Math.round(item.price * 100), // Convert price to cents and round
+    },
+    quantity: item.quantity,
+  }));
   try {
     const session = await stripeGateway.checkout.sessions.create({
       payment_method_types: ['card'],
-      line_items: [{
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: 'Tomatoes',
-          },
-          unit_amount: 50 * 100, // Convert item price to cents
-        },
-        quantity: 1,
-      }],
+      line_items: finalProduct,
       mode: 'payment',
       success_url: `${DOMAIN}/success`,
       cancel_url: `${DOMAIN}/cancel`,

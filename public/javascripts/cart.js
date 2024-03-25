@@ -5,8 +5,9 @@ let cart = [
     { id: 24, quantity: 5 }
 ]
 
-const checkout = document.getElementById('checkout');
-checkout.addEventListener('click', () => {
+const checkout = document.getElementById('checkoutForm');
+checkout.addEventListener('submit', (e) => {
+    e.preventDefault();
     fetch('/stripe-checkout', {
         method: 'POST',
         headers: new Headers({ 'Content-Type': 'application/json' }),

@@ -1,3 +1,4 @@
+import { sortCart } from "./backend-functions.js";
 import { supabase } from "./supabase.js";
 
 export async function fetchDataLimit() {
@@ -94,32 +95,30 @@ async function createUserRow(value) {
 export async function fetcharray(UserID) {
     let { data: users, error } = await supabase
         .from('users')
-        .select('cartID, cartQuantity, cart')
+        .select('cart')
         .eq('userID', UserID)
         .single()
     console.log("Fetching cart array for user: ", users);
     return users;
 }
 
-export async function addToCart(id, quantity, cartData) {
+export async function addToCart(cartData) {
     const UserID = await getSession();
     if (UserID == null) {
         return 'No user logged in'
     }
     const fetchedArray = await fetcharray(UserID);
-    console.log(fetchedArray);
-    fetchedArray.cartID.push(id)
-    fetchedArray.cartQuantity.push(quantity)
     fetchedArray.cart.push(cartData)
+    const cart = sortCart(fetchedArray.cart);
+    console.log('sorted cart is', cart);
     const { data, error } = await supabase
         .from('users')
-        .update({ cart: fetchedArray.cart })
+        .update({ cart: cart })
         .eq('userID', UserID)
         .select()
     if (error) {
         console.log(error)
     }
-    console.log(data)
     return 'Item added to cart!'
 }
 
@@ -136,10 +135,10 @@ export async function loginUser(email, password) {
     }
 }
 
-export async function getNameandPrice(id) {
+export async function fetchCartDetails(id) {
     const { data, error } = await supabase
         .from('items')
-        .select('name, price')
+        .select('name, price, availableIn, url, id')
         .in('id', id)
     if (error) console.log(error)
     else return data;
@@ -157,3 +156,20 @@ export async function fetchID() {
         return data.cartID;
     }
 }
+
+export async function fetchCart() {
+    const UserID = await getSession();
+    const { data, error } = await supabase
+        .from('users')
+        .select('cart')
+        .eq('userID', UserID)
+        .single()
+    if (error) console.log(error)
+    else {
+        return data.cart;
+    }
+}
+
+
+///// BE SURE TO REPLACE fetchCart and fetchArray..... (Pending)
+
