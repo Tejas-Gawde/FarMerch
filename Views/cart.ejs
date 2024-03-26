@@ -22,6 +22,11 @@
       rel="stylesheet"
     />
     <script src="https://js.stripe.com/v3/"></script>
+    <style>
+      .quantity-div {
+        width: auto;
+      }
+    </style>
   </head>
 
   <body>
@@ -85,16 +90,34 @@
       <% let subtotal = 0 %> <% if (finalCart.length > 0) { %>
       <div class="project">
         <div>
-          <% finalCart.forEach(item => { %> <% subtotal +=
-          (item.quantity*item.price) %>
+          <% finalCart.forEach(item => { %>
           <div class="left">
             <div class="box1">
               <img src="<%= item.url %>" />
               <div class="content">
                 <h3><%= item.name %> (<%= item.availableIn %>)</h3>
                 <p>Price per item: Rs <%= item.price %></p>
-                <p class="unit">Quantity: <%= item.quantity %></p>
-                <p>Total Price: <%= (item.quantity*item.price) %></p>
+                <p class="unit">Quantity:</p>
+                <div class="quantity-div">
+                  <button class="minus-btn" data-item-id="<%= item.id %>">
+                    -
+                  </button>
+                  <input
+                    type="text"
+                    class="quantity-input"
+                    value="<%= item.quantity %>"
+                    data-item-id="<%= item.id %>"
+                  />
+                  <button class="plus-btn" data-item-id="<%= item.id %>">
+                    +
+                  </button>
+                </div>
+                <p>
+                  Total Price: Rs
+                  <span class="total-price"
+                    ><%= (item.quantity * item.price) %></span
+                  >
+                </p>
                 <button class="rbtn">Remove</button>
               </div>
             </div>
@@ -121,6 +144,35 @@
       <% } %>
     </div>
     <script src="../public/javascripts/cart.js"></script>
+    <script>
+      // Event delegation to handle clicks on any increment/decrement button
+      document.addEventListener("click", function (event) {
+        const clickedElement = event.target;
+        if (
+          clickedElement.classList.contains("minus-btn") ||
+          clickedElement.classList.contains("plus-btn")
+        ) {
+          const itemId = clickedElement.dataset.itemId; // Get item ID from button's data-attribute
+          const quantityInput = document.querySelector(
+            `.quantity-input[data-item-id="${itemId}"]`
+          ); // Find associated input field
+          const totalPriceSpan = document.querySelector(
+            `.total-price[data-item-id="${itemId}"]`
+          ); // Find associated total price span
+          const currentQuantity = parseInt(quantityInput.value, 10); // Convert quantity to number
+
+          let newQuantity;
+          if (clickedElement.classList.contains("minus-btn")) {
+            newQuantity = Math.max(currentQuantity - 1, 1); // Decrement and limit to minimum of 0
+          } else {
+            newQuantity = currentQuantity + 1; // Increment
+          }
+          quantityInput.value = newQuantity;
+          console.log(itemId);
+          console.log(newQuantity);
+        }
+      });
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

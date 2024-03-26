@@ -162,7 +162,7 @@ export async function fetchCart() {
     const { data, error } = await supabase
         .from('users')
         .select('cart')
-        .eq('userID', UserID)
+        .eq('userID', '4f174124-0d5e-40d4-b728-d26626efe9a0')
         .single()
     if (error) console.log(error)
     else {
