@@ -119,7 +119,7 @@ export async function addToCart(cartData) {
     if (error) {
         console.log(error)
     }
-    return 'Item added to cart!'
+    else return 'Item added to cart!'
 }
 
 export async function loginUser(email, password) {
@@ -168,6 +168,19 @@ export async function fetchCart() {
     else {
         return data.cart;
     }
+}
+
+export async function updateCart(cart) {
+    const UserID = await getSession();
+    const { data, error } = await supabase
+        .from('users')
+        .update({ cart: cart })
+        .eq('userID', UserID)
+        .select()
+    if (error) {
+        console.log(error)
+    }
+    return 'Cart Updated'
 }
 
 

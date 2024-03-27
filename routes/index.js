@@ -2,8 +2,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import stripe from 'stripe';
-import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory, signUpNewUser, addToCart, fetchID, fetchCartDetails, loginUser, fetchCart } from '../public/javascripts/supabase-backend-functions.js';
-import { combineCartAndProductData } from '../public/javascripts/backend-functions.js';
+import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory, signUpNewUser, addToCart, fetchID, fetchCartDetails, loginUser, fetchCart, updateCart } from '../public/javascripts/supabase-backend-functions.js';
+import { combineCartAndProductData, removeFromCart, updateCartQuantity } from '../public/javascripts/backend-functions.js';
 
 dotenv.config();
 // Declaration
@@ -59,6 +59,22 @@ router.post('/register', async (req, res) => {
   const { Email, Password, Username } = req.body;
   await signUpNewUser(Email, Password, Username);
   res.send("nice");
+})
+
+router.post('/update-cart', async (req, res) => {
+  const { id, quantity } = req.body;
+  const cart = await fetchCart();
+  const newCart = updateCartQuantity(cart, id, quantity)
+  await updateCart(newCart)
+  res.send("nice")
+})
+
+router.post('/remove-from-cart', async (req, res) => {
+  const { id } = req.body;
+  const cart = await fetchCart();
+  const newCart = removeFromCart(cart, id)
+  await updateCart(newCart)
+  res.send("nice")
 })
 
 router.get('/about-us', (req, res) => {

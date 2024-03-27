@@ -90,7 +90,8 @@
       <% let subtotal = 0 %> <% if (finalCart.length > 0) { %>
       <div class="project">
         <div>
-          <% finalCart.forEach(item => { %>
+          <% finalCart.forEach(item => { %> <% subtotal += (item.quantity *
+          item.price) %>
           <div class="left">
             <div class="box1">
               <img src="<%= item.url %>" />
@@ -118,7 +119,9 @@
                     ><%= (item.quantity * item.price) %></span
                   >
                 </p>
-                <button class="rbtn">Remove</button>
+                <button class="remove-btn rbtn" data-item-id="<%= item.id %>">
+                  Remove
+                </button>
               </div>
             </div>
           </div>
@@ -168,8 +171,31 @@
             newQuantity = currentQuantity + 1; // Increment
           }
           quantityInput.value = newQuantity;
-          console.log(itemId);
-          console.log(newQuantity);
+          fetch("/update-cart", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              id: parseInt(itemId),
+              quantity: newQuantity,
+            }),
+          });
+        }
+        if (clickedElement.classList.contains("remove-btn")) {
+          const itemId = clickedElement.dataset.itemId; // Get item ID from button
+
+          // Send POST request with item ID (adjust route and body as needed)
+          fetch("/remove-from-cart", {
+            // Customize route based on your setup
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ id: itemId }), // Body with item ID
+          })
+            .then((response) => response.json()) // Handle response (e.g., update cart UI)
+            .catch((error) => console.error(error));
         }
       });
     </script>

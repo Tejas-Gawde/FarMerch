@@ -24,3 +24,23 @@ export function combineCartAndProductData(cartData, productData) {
     }
     return combinedData;
 }
+
+export function updateCartQuantity(cart, id, newQuantity) {
+    // Find the item in the cart to update
+    const itemIndex = cart.findIndex(item => item.id === id);
+
+    if (itemIndex !== -1) {
+        // Update the quantity of the existing item
+        cart[itemIndex].quantity = newQuantity;
+    } else {
+        // If the item doesn't exist, create a new one (optional)
+        console.warn(`Item with ID ${id} not found in cart.`);
+    }
+    return cart; // Return the updated cart
+}
+
+export function removeFromCart(cart, id) {
+    // Efficiently remove the object using filter
+    const updatedCart = cart.filter(item => item.id != id);
+    return updatedCart;
+}
