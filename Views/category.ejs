@@ -89,7 +89,21 @@
 
     <div class="small-category-prod">
       <div class="row-elements-prod">
-        <% categoryData.forEach(item => { %>
+        <% categoryData.forEach(item => { %> <% if(item.stock == 0) { %>
+        <div class="prod" style="cursor: default !important">
+          <img src="<%= item.url %>" />
+          <h4><%= item.name %></h4>
+          <div class="rating">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-sharp"></i>
+          </div>
+          <p>Rs <%= item.price %>/kg</p>
+          <p>Item Out of stock</p>
+        </div>
+        <% } else { %>
         <div class="prod">
           <img src="<%= item.url %>" />
           <a href="/products/<%= item.name %>">
@@ -103,11 +117,8 @@
             </div>
           </a>
           <p>Rs <%= item.price %>/kg</p>
-          <button class="cart-button" href="#">
-            <i class="fa-solid fa-cart-shopping" class="cart"></i>
-          </button>
         </div>
-        <% }) %>
+        <% } %> <% }) %>
       </div>
     </div>
 
