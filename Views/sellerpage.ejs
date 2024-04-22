@@ -16,6 +16,7 @@
     <h3 id="status">User Status : Not Logged In</h3>
     <h1 class="usertype">Seller</h1>
     <div class="buyer-seller-container">
+      <div></div>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button
@@ -71,7 +72,12 @@
             <label for="floatingPassword">Password</label>
           </div>
           <div class="submit-button">
-            <button class="btn btn-primary" type="submit" id="login">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              id="login"
+              onclick="sendLogin('/sellerLogin')"
+            >
               Login
             </button>
           </div>
@@ -92,9 +98,10 @@
           <div class="input-group input-group-lg">
             <span class="input-group-text" id="basic-addon1">@</span>
             <input
+              id="regName"
               type="text"
               class="form-control"
-              placeholder="Username"
+              placeholder="Seller Name"
               aria-label="Username"
               aria-describedby="basic-addon1"
             />
@@ -118,18 +125,83 @@
             <label for="floatingPassword">Password</label>
           </div>
           <div class="submit-button">
-            <button class="btn btn-primary" type="submit" id="register">
+            <button
+              class="btn btn-primary"
+              type="submit"
+              id="register"
+              onclick="sendRegister('/sellerRegister')"
+            >
               Register
             </button>
           </div>
         </div>
       </div>
     </div>
-    <script src="javascripts/supabase-auth.js" type="module"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"
     ></script>
+    <script>
+      function sendRegister(url) {
+        const email = document.getElementById("regEmail");
+        const password = document.getElementById("regPass");
+        const username = document.getElementById("regName");
+
+        const data = {
+          Email: email.value,
+          Password: password.value,
+          Username: username.value,
+        };
+
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        };
+
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((data) => {
+            if ((data = "Account created successfully"))
+              window.location.href = "/";
+            alert(data);
+          })
+          .catch((error) => {
+            alert("Error:", error);
+          });
+      }
+
+      function sendLogin(url) {
+        const email = document.getElementById("loginEmail");
+        const password = document.getElementById("loginPass");
+
+        const data = {
+          Email: email.value,
+          Password: password.value,
+        };
+
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        };
+
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data);
+            if ((data = "User logged in successfully"))
+              window.location.href = "/";
+          })
+          .catch((error) => {
+            alert("Error:", error);
+          });
+      }
+    </script>
   </body>
 </html>

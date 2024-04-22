@@ -2,7 +2,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import stripe from 'stripe';
-import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory, signUpNewUser, addToCart, fetchID, fetchCartDetails, loginUser, fetchCart, updateCart } from '../public/javascripts/supabase-backend-functions.js';
+import { fetchData, fetchDataLimit, fetchSingleData, fetchCategory, signUpNewUser, addToCart, fetchID, fetchCartDetails, loginUser, fetchCart, updateCart, loginSeller, signUpNewSeller } from '../public/javascripts/supabase-backend-functions.js';
 import { combineCartAndProductData, removeFromCart, updateCartQuantity } from '../public/javascripts/backend-functions.js';
 
 dotenv.config();
@@ -52,6 +52,18 @@ router.post('/addtocart', async (req, res) => {
 router.post('/login', async (req, res) => {
   const { Email, Password } = req.body;
   const message = await loginUser(Email, Password);
+  res.send(JSON.stringify(message));
+})
+
+router.post('/sellerLogin', async (req, res) => {
+  const { Email, Password } = req.body;
+  const message = await loginSeller(Email, Password, 'seller');
+  res.send(JSON.stringify(message));
+})
+
+router.post('/sellerRegister', async (req, res) => {
+  const { Email, Password, Username } = req.body;
+  const message = await signUpNewSeller(Email, Password, Username);
   res.send(JSON.stringify(message));
 })
 
@@ -128,7 +140,7 @@ router.post('/stripe-checkout', async (req, res) => {
   const finalCart = combineCartAndProductData(cart, cartItems);
   const finalProduct = finalCart.map(item => ({
     price_data: {
-      currency: 'inr',
+      currency: 'usd',
       product_data: {
         name: item.name,
         images: [item.url]

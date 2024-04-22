@@ -94,14 +94,14 @@
             <button class="minus-btn" onclick="decrement()">
               <i class="fa-solid fa-minus"></i>
             </button>
-            <input type="text" class="quantity-input" value="1" />
+            <input type="text" class="quantity-input" value="1" disabled />
             <button class="plus-btn" onclick="increment()">
               <i class="fa-solid fa-plus"></i>
             </button>
           </div>
           <div class="product-btn-div">
             <button
-              class="btn btn-secondary m-2"
+              class="btn btn-outline-success"
               type="button"
               aria-expanded="false"
               onclick="sendData('/addtocart')"
@@ -109,7 +109,7 @@
               Add to Cart
             </button>
             <button
-              class="btn btn-secondary m-2"
+              class="btn btn-outline-success ms-1"
               type="button"
               aria-expanded="false"
             >

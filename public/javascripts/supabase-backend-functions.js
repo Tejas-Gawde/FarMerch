@@ -69,6 +69,7 @@ export async function signUpNewUser(email, password, username) {
         options: {
             data: {
                 display_name: username,
+                type: "Customer",
             },
         },
     });
@@ -76,6 +77,7 @@ export async function signUpNewUser(email, password, username) {
         return error.message;
     } else {
         const userId = await getSession();
+        console.log(data)
         return await createUserRow(userId);
     }
 }
@@ -184,6 +186,65 @@ export async function updateCart(cart) {
     return 'Cart Updated'
 }
 
+export async function signUpNewSeller(email, password, username) {
+    const { data, error } = await supabase.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+            data: {
+                display_name: username,
+                type: "Seller",
+            },
+        },
+    });
+    if (error) {
+        return error.message;
+    } else {
+        const userId = await getSession();
+        console.log(data)
+        return await createSellerRow(userId, data.user.user_metadata.display_name);
+    }
+}
 
+async function createSellerRow(userID, userName) {
+    const { data, error } = await supabase
+        .from("seller")
+        .insert([{ userID: userID, sellerName: userName }])
+        .select();
+    if (error) {
+        console.log(error.message);
+    } else {
+        return "Seller account created successfully";
+    }
+}
+
+async function signOutUser() {
+    const { error } = await supabase.auth.signOut();
+    if (error) alert('Error signing out:', error.message);
+    else {
+        alert('Successfully signed out!');
+        getSession();
+    }
+}
+
+export async function loginSeller(email, password) {
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password,
+    })
+    if (error) {
+        return error.message;
+    }
+    else {
+        if (data.user.user_metadata.type === "Seller") {
+            return "Seller logged in successfully";
+            console.log(data)
+        } else {
+            signOutUser();
+            return "Not A seller account";
+        }
+    }
+    getSession();
+}
 ///// BE SURE TO REPLACE fetchCart and fetchArray..... (Pending)
 

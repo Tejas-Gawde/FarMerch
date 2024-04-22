@@ -153,6 +153,8 @@
         fetch(url, options)
           .then((response) => response.json())
           .then((data) => {
+            if ((data = "Account created successfully"))
+              window.location.href = "/";
             alert(data);
           })
           .catch((error) => {
@@ -180,7 +182,8 @@
         fetch(url, options)
           .then((response) => response.json())
           .then((data) => {
-            alert(data);
+            if ((data = "User logged in successfully"))
+              window.location.href = "/";
           })
           .catch((error) => {
             alert("Error:", error);
