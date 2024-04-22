@@ -13,7 +13,6 @@
     />
   </head>
   <body class="buyer-seller-body">
-    <h3 id="status">User Status : Not Logged In</h3>
     <h1 class="usertype">Customer</h1>
     <div class="buyer-seller-container">
       <div></div>
@@ -152,12 +151,12 @@
         };
 
         fetch(url, options)
-          .then((response) => response)
+          .then((response) => response.json())
           .then((data) => {
-            console.log("Success:", data);
+            alert(data);
           })
           .catch((error) => {
-            console.error("Error:", error);
+            alert("Error:", error);
           });
       }
 
@@ -179,12 +178,12 @@
         };
 
         fetch(url, options)
-          .then((response) => response)
+          .then((response) => response.json())
           .then((data) => {
-            console.log("Success:", data);
+            alert(data);
           })
           .catch((error) => {
-            console.error("Error:", error);
+            alert("Error:", error);
           });
       }
     </script>

@@ -51,14 +51,14 @@ router.post('/addtocart', async (req, res) => {
 
 router.post('/login', async (req, res) => {
   const { Email, Password } = req.body;
-  await loginUser(Email, Password);
-  res.send("nice");
+  const message = await loginUser(Email, Password);
+  res.send(JSON.stringify(message));
 })
 
 router.post('/register', async (req, res) => {
   const { Email, Password, Username } = req.body;
-  await signUpNewUser(Email, Password, Username);
-  res.send("nice");
+  const message = await signUpNewUser(Email, Password, Username);
+  res.send(JSON.stringify(message));
 })
 
 router.post('/update-cart', async (req, res) => {

@@ -73,10 +73,10 @@ export async function signUpNewUser(email, password, username) {
         },
     });
     if (error) {
-        console.log(error.messaage);
+        return error.message;
     } else {
         const userId = await getSession();
-        await createUserRow(userId);
+        return await createUserRow(userId);
     }
 }
 
@@ -88,7 +88,7 @@ async function createUserRow(value) {
     if (error) {
         console.log(error.message);
     } else {
-        console.log("successfully created user row");
+        return "Account created successfully";
     }
 }
 
@@ -128,10 +128,11 @@ export async function loginUser(email, password) {
         password: password,
     })
     if (error) {
-        console.log(error)
+        return error.message;
     }
     else {
         getSession();
+        return "User logged in successfully";
     }
 }
 
