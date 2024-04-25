@@ -1,11 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <link href="../stylesheets/style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div
+      style="
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      "
+    >
+      <div>
+        <div
+          style="font-size: x-large; margin-bottom: 10px; text-align: center"
+        >
+          Low Stock Reminder
+        </div>
+        <% items.map(item => { %>
+        <div style="display: flex; flex-direction: row">
+          <div class="stock"><%= item.name %></div>
+          <div class="stock">Category: <%= item.category %></div>
+          <div class="stock">Price: <%= item.price %></div>
+          <div class="stock">Available in: <%= item.availableIn %></div>
+          <div class="stock">Stock: <%= item.stock %></div>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
 </html>

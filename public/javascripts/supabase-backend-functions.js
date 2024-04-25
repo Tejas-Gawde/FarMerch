@@ -24,6 +24,16 @@ export async function fetchData() {
     }
 }
 
+export async function fetchLowStockItems() {
+    let { data: items, error } = await supabase.from("items").select("*").lte("stock", 20)
+    if (error) {
+        console.log(error);
+    } else {
+        console.log("got low stock items");
+        return items;
+    }
+}
+
 export async function fetchSingleData(itemName) {
     let { data: items, error } = await supabase
         .from("items")

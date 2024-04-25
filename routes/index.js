@@ -16,6 +16,7 @@ import {
     loginSeller,
     signUpNewSeller,
     getuserType,
+    fetchLowStockItems,
 } from "../public/javascripts/supabase-backend-functions.js";
 import {
     combineCartAndProductData,
@@ -110,8 +111,13 @@ router.post("/remove-from-cart", async (req, res) => {
 router.get("/stockhistory", async (req, res) => {
     const state = await getuserType();
     if (state == "Seller") {
-        res.render("stockhistory");
-    } else res.render("notseller");
+        const items = await fetchLowStockItems();
+        console.log(items)
+        res.render("stockhistory", { items });
+    } else {
+        const message = "Seller";
+        res.render("nologin", { message });
+    }
 });
 
 router.get("/about-us", (req, res) => {
