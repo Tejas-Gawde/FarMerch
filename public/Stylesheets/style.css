@@ -501,6 +501,7 @@ footer .copyw {
 /*Upload.ejs CSS*/
 .upload-body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 100px;

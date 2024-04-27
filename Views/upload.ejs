@@ -14,7 +14,14 @@
   </head>
   <body>
     <div class="upload-body">
+      <h2 style="text-align: center; padding-bottom: 10px">
+        Upload Products to FarMerch
+      </h2>
       <div class="form-border">
+        <div
+          id="liveAlertPlaceholder"
+          style="padding: 10px 10px 0px 10px"
+        ></div>
         <div class="form-floating m-3">
           <select
             class="form-select"
@@ -90,6 +97,18 @@
         const description = document.getElementById("itemDescp1");
         const availableIn = document.getElementById("availableIn");
 
+        if (
+          category.value == "Select" ||
+          isEmpty(name.value) ||
+          isEmpty(price.value) ||
+          isEmpty(stock.value) ||
+          isEmpty(itemurl.value) ||
+          isEmpty(description.value) ||
+          availableIn.value == "Select"
+        ) {
+          appendAlert("Please Fill all the required fields", "danger");
+          return;
+        }
         const data = {
           Category: category.value,
           Name: name.value,
@@ -117,6 +136,34 @@
             alert("Error:", error);
           });
       }
+
+      function isEmpty(value) {
+        return value === null || value.trim() === "";
+      }
+
+      const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
+
+      const appendAlert = (message, type) => {
+        // Check if there are any existing alerts
+        const existingAlerts = alertPlaceholder.querySelectorAll(".alert");
+
+        // If no alerts exist, create and append a new alert
+        if (existingAlerts.length === 0) {
+          const wrapper = document.createElement("div");
+          wrapper.innerHTML = [
+            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+            `  <div>${message}</div>`,
+            '  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+            "</div>",
+          ].join("");
+
+          alertPlaceholder.append(wrapper);
+        } else {
+          // If alerts exist, update the content of the first alert
+          const firstAlert = existingAlerts[0];
+          firstAlert.querySelector("div").textContent = message; // Update message content
+        }
+      };
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

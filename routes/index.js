@@ -72,25 +72,30 @@ router.post("/addtocart", async (req, res) => {
 router.post("/login", async (req, res) => {
     const { Email, Password } = req.body;
     const message = await loginUser(Email, Password);
-    res.send(JSON.stringify(message));
-});
-
-router.post("/sellerLogin", async (req, res) => {
-    const { Email, Password } = req.body;
-    const message = await loginSeller(Email, Password, "seller");
-    res.send(JSON.stringify(message));
-});
-
-router.post("/sellerRegister", async (req, res) => {
-    const { Email, Password, Username } = req.body;
-    const message = await signUpNewSeller(Email, Password, Username);
-    res.send(JSON.stringify(message));
+    if (message == "User logged in successfully") res.send(JSON.stringify(message));
+    else res.status(401).send(JSON.stringify(message));
 });
 
 router.post("/register", async (req, res) => {
     const { Email, Password, Username } = req.body;
     const message = await signUpNewUser(Email, Password, Username);
-    res.send(JSON.stringify(message));
+    if (message == "Account created successfully") res.send(JSON.stringify(message));
+    else res.status(401).send(JSON.stringify(message));
+});
+
+router.post("/sellerLogin", async (req, res) => {
+    const { Email, Password } = req.body;
+    console.log(Email, Password);
+    const message = await loginSeller(Email, Password);
+    if (message == "Seller logged in successfully") res.send(JSON.stringify(message));
+    else res.status(401).send(JSON.stringify(message));
+});
+
+router.post("/sellerRegister", async (req, res) => {
+    const { Email, Password, Username } = req.body;
+    const message = await signUpNewSeller(Email, Password, Username);
+    if (message == "Seller account created successfully") res.send(JSON.stringify(message));
+    else res.status(401).send(JSON.stringify(message));
 });
 
 router.post("/update-cart", async (req, res) => {

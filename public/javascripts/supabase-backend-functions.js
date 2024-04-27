@@ -125,7 +125,8 @@ export async function signUpNewUser(email, password, username) {
         },
     });
     if (error) {
-        return error.message;
+        if (error.message == "Anonymous sign-ins are disabled") return "Fill out all fields!";
+        else return error.message;
     } else {
         const userId = await getSession();
         console.log(data);
@@ -247,7 +248,8 @@ export async function signUpNewSeller(email, password, username) {
         },
     });
     if (error) {
-        return error.message;
+        if (error.message == "Anonymous sign-ins are disabled") return "Fill out all fields!";
+        else return error.message;
     } else {
         const userId = await getSession();
         console.log(data);
@@ -264,7 +266,7 @@ async function createSellerRow(userID, userName) {
         .insert([{ userID: userID, sellerName: userName }])
         .select();
     if (error) {
-        console.log(error.message);
+        return error.message;
     } else {
         return "Seller account created successfully";
     }
@@ -274,7 +276,7 @@ async function signOutUser() {
     const { error } = await supabase.auth.signOut();
     if (error) alert("Error signing out:", error.message);
     else {
-        alert("Successfully signed out!");
+        console.log("Successfully signed out!");
         getSession();
     }
 }
@@ -291,6 +293,7 @@ export async function loginSeller(email, password) {
             return "Seller logged in successfully";
             console.log(data);
         } else {
+            console.log("Not a seller account");
             signOutUser();
             return "Not A seller account";
         }
