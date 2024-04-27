@@ -1,5 +1,3 @@
-
-
 const checkout = document.getElementById('checkoutForm');
 checkout.addEventListener('submit', (e) => {
     e.preventDefault();

@@ -61,6 +61,41 @@ export async function fetchCategory(categoryName) {
     }
 }
 
+export async function uploadItem(item) {
+    const sellerName = await getSellerName();
+    const { data, error } = await supabase
+        .from('items')
+        .insert([
+            {
+                category: item.Category,
+                name: item.Name,
+                price: item.Price,
+                stock: item.Stock,
+                availableIn: item.AvailableIn,
+                url: item.Url,
+                descp1: item.Description,
+                seller: sellerName,
+            },
+        ])
+        .select();
+    if (error) {
+        console.log(error);
+        return error;
+    }
+    else {
+        console.log(data);
+        return "Item uploaded";
+    }
+}
+
+async function getSellerName() {
+    const { data, error } = await supabase.auth.getSession();
+    if (data.session != null) {
+        console.log("Session:", data.session.user.id);
+        return data.session.user.user_metadata.display_name;
+    } else console.log("No session found");
+}
+
 export async function getSession() {
     const { data, error } = await supabase.auth.getSession();
     if (data.session != null) {

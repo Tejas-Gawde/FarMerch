@@ -3,9 +3,9 @@ export function sortCart(cart) {
     const consolidatedCart = {};
     for (const item of cart) {
         const { id, quantity } = item;
-        consolidatedCart[parseInt(id)] = (consolidatedCart[parseInt(id)] || 0) + quantity; // Parse ID before using it as a key
+        consolidatedCart[parseInt(id)] = (consolidatedCart[parseInt(id)] || 0) + quantity;
     }
-    return Object.entries(consolidatedCart).map(([id, quantity]) => ({ id: parseInt(id), quantity })); // Parse ID before returning it
+    return Object.entries(consolidatedCart).map(([id, quantity]) => ({ id: parseInt(id), quantity }));
 }
 
 export function combineCartAndProductData(cartData, productData) {

@@ -17,6 +17,7 @@ import {
     signUpNewSeller,
     getuserType,
     fetchLowStockItems,
+    uploadItem,
 } from "../public/javascripts/supabase-backend-functions.js";
 import {
     combineCartAndProductData,
@@ -117,8 +118,24 @@ router.get("/stockhistory", async (req, res) => {
     } else {
         const message = "Seller";
         res.render("nologin", { message });
+
     }
 });
+
+router.get("/upload", async (req, res) => {
+    const state = await getuserType();
+    if (state == "Seller") {
+        res.render("upload");
+    } else {
+        const message = "Seller";
+        res.render("nologin", { message });
+    }
+});
+
+router.post("/upload", async (req, res) => {
+    const message = await uploadItem(req.body)
+    res.send(JSON.stringify(message));
+})
 
 router.get("/about-us", (req, res) => {
     res.render("aboutus");
@@ -134,10 +151,6 @@ router.get("/customer", (req, res) => {
 
 router.get("/seller", (req, res) => {
     res.render("sellerpage");
-});
-
-router.get("/upload", (req, res) => {
-    res.render("upload");
 });
 
 router.get("/vegetable", (req, res) => {

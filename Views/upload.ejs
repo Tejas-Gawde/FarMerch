@@ -40,6 +40,24 @@
           <label for="floatingInput">Price/Kg</label>
         </div>
         <div class="form-floating m-3">
+          <select
+            class="form-select"
+            id="availableIn"
+            aria-label="Floating label select example"
+          >
+            <option selected>Select</option>
+            <option value="5kg">5kg</option>
+            <option value="1kg">1kg</option>
+            <option value="500gm">500gm</option>
+            <option value="250gm">250gm</option>
+          </select>
+          <label for="floatingSelect">Item available in Quantity</label>
+        </div>
+        <div class="form-floating m-3">
+          <input type="text" class="form-control" id="itemStock" />
+          <label for="floatingInput">Stock</label>
+        </div>
+        <div class="form-floating m-3">
           <input type="text" class="form-control" id="itemUrl" />
           <label for="floatingInput">URL for Item Image</label>
         </div>
@@ -52,12 +70,54 @@
           <label for="floatingTextarea2">Description Paragraph</label>
         </div>
         <div class="submit-button">
-          <button class="btn btn-primary" type="submit" id="upload">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            onclick="sendUpload('/upload')"
+          >
             Submit
           </button>
         </div>
       </div>
     </div>
+    <script>
+      function sendUpload(url) {
+        const category = document.getElementById("selectCategory");
+        const name = document.getElementById("itemName");
+        const price = document.getElementById("itemPrice");
+        const stock = document.getElementById("itemStock");
+        const itemurl = document.getElementById("itemUrl");
+        const description = document.getElementById("itemDescp1");
+        const availableIn = document.getElementById("availableIn");
+
+        const data = {
+          Category: category.value,
+          Name: name.value,
+          Price: price.value,
+          Stock: stock.value,
+          AvailableIn: availableIn.value,
+          Url: itemurl.value,
+          Description: description.value,
+        };
+
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        };
+
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data);
+          })
+          .catch((error) => {
+            alert("Error:", error);
+          });
+      }
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
@@ -68,6 +128,5 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
-    <script src="/javascripts/supabase-upload.js" type="module"></script>
   </body>
 </html>
