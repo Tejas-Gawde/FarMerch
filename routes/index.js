@@ -24,6 +24,7 @@ import {
     removeFromCart,
     updateCartQuantity,
 } from "../public/javascripts/backend-functions.js";
+import multer from "multer";
 
 dotenv.config();
 // Declaration
@@ -32,6 +33,8 @@ var router = express.Router();
 
 const stripeGateway = stripe(process.env.STRIPE_API_KEY);
 const DOMAIN = process.env.DOMAIN;
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage, limits: { fileSize: 10 * 1024 * 1024 } });
 
 /* GET home page. */
 router.get("/", async (req, res, next) => {
@@ -76,9 +79,10 @@ router.post("/login", async (req, res) => {
     else res.status(401).send(JSON.stringify(message));
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", upload.single("KisanCard"), async (req, res) => {
     const { Email, Password, Username } = req.body;
-    const message = await signUpNewUser(Email, Password, Username);
+    const kisanCardFile = req.file;
+    const message = await signUpNewUser(Email, Password, Username, kisanCardFile);
     if (message == "Account created successfully") res.send(JSON.stringify(message));
     else res.status(401).send(JSON.stringify(message));
 });
@@ -123,7 +127,6 @@ router.get("/stockhistory", async (req, res) => {
     } else {
         const message = "Seller";
         res.render("nologin", { message });
-
     }
 });
 

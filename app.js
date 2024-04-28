@@ -1,6 +1,3 @@
-//Imports
-// Require express
-
 // ES6 imports
 import express from 'express';
 import createHttpError from 'http-errors';
@@ -8,7 +5,6 @@ import createHttpError from 'http-errors';
 // Import route files  
 import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
-
 
 // Import path
 import path from 'path';

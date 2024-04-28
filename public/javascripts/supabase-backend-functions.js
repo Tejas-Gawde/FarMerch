@@ -113,7 +113,7 @@ export async function getuserType() {
     } else console.log("No session found");
 }
 
-export async function signUpNewUser(email, password, username) {
+export async function signUpNewUser(email, password, username, file) {
     const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
@@ -129,7 +129,7 @@ export async function signUpNewUser(email, password, username) {
         else return error.message;
     } else {
         const userId = await getSession();
-        console.log(data);
+        await uploadKisanCard(file, userId);
         return await createUserRow(userId);
     }
 }
@@ -143,6 +143,18 @@ async function createUserRow(value) {
         console.log(error.message);
     } else {
         return "Account created successfully";
+    }
+}
+
+async function uploadKisanCard(file, userID) {
+    console.log(file, "Hi")
+    const { data, error } = await supabase.storage
+        .from("kisancard")
+        .upload(`${userID}/KisanCard.png`, file, { "content-type": "image/png" });
+    if (error) {
+        console.log(error);
+    } else {
+        return data;
     }
 }
 
@@ -259,6 +271,7 @@ export async function signUpNewSeller(email, password, username) {
         );
     }
 }
+
 
 async function createSellerRow(userID, userName) {
     const { data, error } = await supabase
