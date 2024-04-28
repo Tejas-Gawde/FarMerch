@@ -57,13 +57,40 @@
               >
                 Account
               </button>
-              <ul class="dropdown-menu drop">
+              <ul class="dropdown-menu">
+                <% if (!user) { %>
                 <li class="NavbarList">
                   <a href="/customer" class="dropdown-item">Customer</a>
                 </li>
                 <li class="NavbarList">
                   <a href="/seller" class="dropdown-item">Seller</a>
                 </li>
+                <% } else if (user) { %> <% if (user.user_metadata.type ===
+                "Seller") { %>
+                <li class="NavbarList">
+                  <a class="dropdown-item"
+                    >Logged in as: <%= user.user_metadata.display_name %>
+                  </a>
+                </li>
+                <li class="NavbarList">
+                  <a href="/upload" class="dropdown-item">Upload Data</a>
+                </li>
+                <li class="NavbarList">
+                  <a href="/logout" class="dropdown-item">Logout</a>
+                </li>
+                <% } else if (user.user_metadata.type === "Customer") { %>
+                <li class="NavbarList">
+                  <a class="dropdown-item"
+                    >Logged in as: <%= user.user_metadata.display_name %>
+                  </a>
+                </li>
+                <li class="NavbarList">
+                  <a href="/my-address" class="dropdown-item">My Address</a>
+                </li>
+                <li class="NavbarList">
+                  <a href="/logout" class="dropdown-item">Logout</a>
+                </li>
+                <% } } %>
               </ul>
             </div>
           </li>

@@ -18,6 +18,8 @@ import {
     getuserType,
     fetchLowStockItems,
     uploadItem,
+    getLogin,
+    signOutUser,
 } from "../public/javascripts/supabase-backend-functions.js";
 import {
     combineCartAndProductData,
@@ -26,45 +28,149 @@ import {
 } from "../public/javascripts/backend-functions.js";
 import multer from "multer";
 
-dotenv.config();
-// Declaration
-let cartdata = [];
+//Router
 var router = express.Router();
 
+//Configs
 const stripeGateway = stripe(process.env.STRIPE_API_KEY);
 const DOMAIN = process.env.DOMAIN;
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage, limits: { fileSize: 10 * 1024 * 1024 } });
+dotenv.config();
 
-/* GET home page. */
+//Logincheck Middleware
+router.use(async (req, res, next) => {
+    const user = await getLogin();
+    if (user) {
+        req.body.user = user;
+    }
+    else console.log("No user logged in");
+    next();
+});
+
+//GET requests
 router.get("/", async (req, res, next) => {
+    let user = null;
+    if (req.body.user) {
+        user = req.body.user;
+    }
     const itemArrayLimit = await fetchDataLimit();
-    res.render("index", { itemArrayLimit });
+    res.render("index", { itemArrayLimit, user });
 });
 
 router.get("/products", async (req, res) => {
+    let user = null;
+    if (req.body.user) {
+        user = req.body.user;
+    }
     const itemArray = await fetchData();
-    res.render("products", { itemArray });
+    res.render("products", { itemArray, user });
 });
 
 router.get("/products/:item", async (req, res) => {
+    let user = null;
+    if (req.body.user) {
+        user = req.body.user;
+    }
     const itemName = req.params.item;
     const singleItem = await fetchSingleData(itemName);
-    res.render("productpage", { singleItem });
+    res.render("productpage", { singleItem, user });
 });
 
 router.get("/category=:categoryName", async (req, res) => {
+    let user = null;
+    if (req.body.user) {
+        user = req.body.user;
+    }
     const itemName = req.params.categoryName;
     const categoryData = await fetchCategory(itemName);
-    res.render("category", { categoryData, itemName });
+    res.render("category", { categoryData, itemName, user });
 });
 
-router.post("/products", (req, res) => {
-    const { itemName, itemPrice } = req.body;
-    cartdata.push({ itemName: itemName, itemPrice: itemPrice });
-    console.log(cartdata);
+router.get("/stockhistory", async (req, res) => {
+    const state = await getuserType();
+    if (state == "Seller") {
+        const items = await fetchLowStockItems();
+        console.log(items)
+        res.render("stockhistory", { items });
+    } else {
+        const message = "Seller";
+        res.render("nologin", { message });
+    }
 });
 
+router.get("/upload", async (req, res) => {
+    const state = await getuserType();
+    if (state == "Seller") {
+        res.render("upload");
+    } else {
+        const message = "Seller";
+        res.render("nologin", { message });
+    }
+});
+
+router.get("/cart", async (req, res) => {
+    let user = null;
+    if (req.body.user) {
+        user = req.body.user;
+    }
+    const cart = await fetchCart();
+    if (cart) {
+        console.log(cart);
+        const cartItems = await fetchCartDetails(cart.map((item) => item.id));
+        const finalCart = combineCartAndProductData(cart, cartItems);
+        res.render("cart", { finalCart, user });
+    } else {
+        res.render("cart", { finalCart: [], user });
+    }
+});
+
+router.get("/about-us", (req, res) => {
+    let user = null;
+    if (req.body.user) {
+        user = req.body.user;
+    }
+    res.render("aboutus", { user });
+});
+
+router.get("/contact-us", (req, res) => {
+    let user = null;
+    if (req.body.user) {
+        user = req.body.user;
+    }
+    res.render("contact", { user });
+});
+
+router.get("/customer", (req, res) => {
+    res.render("customerpage");
+});
+
+router.get("/seller", (req, res) => {
+    res.render("sellerpage");
+});
+
+router.get("/success", (req, res) => {
+    let user = null;
+    if (req.body.user) {
+        user = req.body.user;
+    }
+    res.render("success", { user });
+});
+
+router.get("/cancel", (req, res) => {
+    let user = null;
+    if (req.body.user) {
+        user = req.body.user;
+    }
+    res.render("cancel", { user });
+});
+
+//POST requests
+router.get
+    ("/logout", async (req, res) => {
+        await signOutUser();
+        res.redirect("/");
+    })
 router.post("/addtocart", async (req, res) => {
     const { cartData } = req.body;
     console.log("cartdaata is", cartData);
@@ -118,72 +224,10 @@ router.post("/remove-from-cart", async (req, res) => {
     res.send("nice");
 });
 
-router.get("/stockhistory", async (req, res) => {
-    const state = await getuserType();
-    if (state == "Seller") {
-        const items = await fetchLowStockItems();
-        console.log(items)
-        res.render("stockhistory", { items });
-    } else {
-        const message = "Seller";
-        res.render("nologin", { message });
-    }
-});
-
-router.get("/upload", async (req, res) => {
-    const state = await getuserType();
-    if (state == "Seller") {
-        res.render("upload");
-    } else {
-        const message = "Seller";
-        res.render("nologin", { message });
-    }
-});
-
 router.post("/upload", async (req, res) => {
     const message = await uploadItem(req.body)
     res.send(JSON.stringify(message));
 })
-
-router.get("/about-us", (req, res) => {
-    res.render("aboutus");
-});
-
-router.get("/contact-us", (req, res) => {
-    res.render("contact");
-});
-
-router.get("/customer", (req, res) => {
-    res.render("customerpage");
-});
-
-router.get("/seller", (req, res) => {
-    res.render("sellerpage");
-});
-
-router.get("/vegetable", (req, res) => {
-    res.render("vegetable");
-});
-
-router.get("/fruits", (req, res) => {
-    res.render("fruits");
-});
-
-router.get("/productpage", (req, res) => {
-    res.render("productpage");
-});
-
-router.get("/cart", async (req, res) => {
-    const cart = await fetchCart();
-    if (cart) {
-        console.log(cart);
-        const cartItems = await fetchCartDetails(cart.map((item) => item.id));
-        const finalCart = combineCartAndProductData(cart, cartItems);
-        res.render("cart", { finalCart });
-    } else {
-        res.render("cart", { finalCart: [] });
-    }
-});
 
 router.post("/stripe-checkout", async (req, res) => {
     const cart = await fetchCart();
@@ -215,16 +259,6 @@ router.post("/stripe-checkout", async (req, res) => {
             error: "Failed to create Stripe Checkout session",
         });
     }
-});
-
-// Route handler for handling payment success
-router.get("/success", (req, res) => {
-    res.render("success"); // Render success page
-});
-
-// Route handler for handling payment cancellation
-router.get("/cancel", (req, res) => {
-    res.render("cancel"); // Render cancellation page
 });
 
 export default router;

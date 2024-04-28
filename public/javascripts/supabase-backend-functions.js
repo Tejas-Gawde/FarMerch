@@ -285,7 +285,7 @@ async function createSellerRow(userID, userName) {
     }
 }
 
-async function signOutUser() {
+export async function signOutUser() {
     const { error } = await supabase.auth.signOut();
     if (error) alert("Error signing out:", error.message);
     else {
@@ -313,4 +313,12 @@ export async function loginSeller(email, password) {
     }
     getSession();
 }
+
+export async function getLogin() {
+    const { data, error } = await supabase.auth.getSession();
+    if (data.session != null) {
+        return data.session.user;
+    } else return null;
+}
+
 ///// BE SURE TO REPLACE fetchCart and fetchArray..... (Pending)
