@@ -671,6 +671,7 @@ footer .copyw {
   width: 500px;
   height: 200px;
   object-fit: cover;
+  max-width: 300px;
 }
 .content {
   padding: 20px;

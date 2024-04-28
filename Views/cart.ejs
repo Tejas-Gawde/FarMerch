@@ -82,6 +82,11 @@
                   <a href="/upload" class="dropdown-item">Upload Data</a>
                 </li>
                 <li class="NavbarList">
+                  <a href="/stockhistory" class="dropdown-item"
+                    >Low Stock Items</a
+                  >
+                </li>
+                <li class="NavbarList">
                   <a href="/logout" class="dropdown-item">Logout</a>
                 </li>
                 <% } else if (user.user_metadata.type === "Customer") { %>
@@ -152,7 +157,7 @@
           </div>
           <% }) %>
         </div>
-        <div>
+        <div style="margin-bottom: 20px">
           <div class="right">
             <p>Subtotal <span>Rs <%= subtotal %></span></p>
             <hr />
@@ -167,7 +172,7 @@
       </div>
       <% } else { %>
       <p style="text-align: center">
-        Please login or add to your cart before accessing cart
+        Please login as Customer or add to your cart before accessing cart
       </p>
       <% } %>
     </div>

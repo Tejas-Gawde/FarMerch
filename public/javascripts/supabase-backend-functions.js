@@ -113,7 +113,7 @@ export async function getuserType() {
     } else console.log("No session found");
 }
 
-export async function signUpNewUser(email, password, username, file) {
+export async function signUpNewUser(email, password, username) {
     const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
@@ -129,7 +129,6 @@ export async function signUpNewUser(email, password, username, file) {
         else return error.message;
     } else {
         const userId = await getSession();
-        await uploadKisanCard(file, userId);
         return await createUserRow(userId);
     }
 }
@@ -248,7 +247,7 @@ export async function updateCart(cart) {
     return "Cart Updated";
 }
 
-export async function signUpNewSeller(email, password, username) {
+export async function signUpNewSeller(email, password, username, file) {
     const { data, error } = await supabase.auth.signUp({
         email: email,
         password: password,
@@ -264,6 +263,7 @@ export async function signUpNewSeller(email, password, username) {
         else return error.message;
     } else {
         const userId = await getSession();
+        await uploadKisanCard(file, userId);
         console.log(data);
         return await createSellerRow(
             userId,

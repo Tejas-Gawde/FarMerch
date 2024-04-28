@@ -32,11 +32,11 @@ import multer from "multer";
 var router = express.Router();
 
 //Configs
+dotenv.config();
 const stripeGateway = stripe(process.env.STRIPE_API_KEY);
 const DOMAIN = process.env.DOMAIN;
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage, limits: { fileSize: 10 * 1024 * 1024 } });
-dotenv.config();
 
 //Logincheck Middleware
 router.use(async (req, res, next) => {
@@ -165,17 +165,17 @@ router.get("/cancel", (req, res) => {
     res.render("cancel", { user });
 });
 
+router.get("/logout", async (req, res) => {
+    await signOutUser();
+    res.redirect("/");
+});
+
 //POST requests
-router.get
-    ("/logout", async (req, res) => {
-        await signOutUser();
-        res.redirect("/");
-    })
 router.post("/addtocart", async (req, res) => {
     const { cartData } = req.body;
     console.log("cartdaata is", cartData);
-    const response = await addToCart(cartData);
-    res.send(response);
+    const message = await addToCart(cartData);
+    res.send(JSON.stringify(message));
 });
 
 router.post("/login", async (req, res) => {
@@ -185,9 +185,8 @@ router.post("/login", async (req, res) => {
     else res.status(401).send(JSON.stringify(message));
 });
 
-router.post("/register", upload.single("KisanCard"), async (req, res) => {
+router.post("/register", async (req, res) => {
     const { Email, Password, Username } = req.body;
-    const kisanCardFile = req.file;
     const message = await signUpNewUser(Email, Password, Username, kisanCardFile);
     if (message == "Account created successfully") res.send(JSON.stringify(message));
     else res.status(401).send(JSON.stringify(message));
@@ -201,9 +200,10 @@ router.post("/sellerLogin", async (req, res) => {
     else res.status(401).send(JSON.stringify(message));
 });
 
-router.post("/sellerRegister", async (req, res) => {
+router.post("/sellerRegister", upload.single("KisanCard"), async (req, res) => {
     const { Email, Password, Username } = req.body;
-    const message = await signUpNewSeller(Email, Password, Username);
+    const kisanCardFile = req.file;
+    const message = await signUpNewSeller(Email, Password, Username, kisanCardFile);
     if (message == "Seller account created successfully") res.send(JSON.stringify(message));
     else res.status(401).send(JSON.stringify(message));
 });

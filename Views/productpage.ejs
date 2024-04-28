@@ -76,6 +76,11 @@
                   <a href="/upload" class="dropdown-item">Upload Data</a>
                 </li>
                 <li class="NavbarList">
+                  <a href="/stockhistory" class="dropdown-item"
+                    >Low Stock Items</a
+                  >
+                </li>
+                <li class="NavbarList">
                   <a href="/logout" class="dropdown-item">Logout</a>
                 </li>
                 <% } else if (user.user_metadata.type === "Customer") { %>
@@ -134,61 +139,12 @@
             >
               Add to Cart
             </button>
-            <button
-              class="btn btn-outline-success ms-1"
-              type="button"
-              aria-expanded="false"
-            >
-              Buy Now
-            </button>
           </div>
           <h4>Product Details</h4>
           <p><%= singleItem.descp1 %></p>
         </div>
       </div>
     </section>
-    <script>
-      let quantityInput = document.querySelector(".quantity-input");
-       function decrement(){
-        if(quantityInput.value <= 1) quantityInput.value = 1;
-        else quantityInput.value = parseInt(quantityInput.value) - 1;
-       }
-
-      function increment(){
-        quantityInput.value = parseInt(quantityInput.value) + 1;
-       }
-
-      function sendData(url) {
-        const dataToInsert = {
-          id: parseInt(<%= singleItem.id %>),
-          quantity: parseInt(quantityInput.value)
-        };
-
-        const data = {
-          productId: <%= singleItem.id %>,
-          productQuantity: quantityInput.value,
-          cartData: dataToInsert
-        };
-
-        const options = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(data)
-        };
-
-        fetch(url, options)
-          .then(response => response)
-          .then(data => {
-            console.log("Success:", data);
-          })
-          .catch(error => {
-            console.error("Error:", error);
-          });
-      }
-    </script>
-
     <!------------footer--------------->
     <footer class="section-p1">
       <div class="column">
@@ -229,6 +185,52 @@
         <p><i class="fa-regular fa-copyright"></i> 2023, FarMerch.com</p>
       </div>
     </footer>
+    <script>
+      let quantityInput = document.querySelector(".quantity-input");
+       function decrement(){
+        if(quantityInput.value <= 1) quantityInput.value = 1;
+        else quantityInput.value = parseInt(quantityInput.value) - 1;
+       }
+
+       function increment() {
+        const newValue = parseInt(quantityInput.value) + 1;
+        if (newValue <= <%= singleItem.stock %>) {
+           quantityInput.value = newValue;
+        } else {
+        alert("Maximum stock reached. Cannot increment quantity.");
+        }
+      }
+
+      function sendData(url) {
+        const dataToInsert = {
+          id: parseInt(<%= singleItem.id %>),
+          quantity: parseInt(quantityInput.value)
+        };
+
+        const data = {
+          productId: <%= singleItem.id %>,
+          productQuantity: quantityInput.value,
+          cartData: dataToInsert
+        };
+
+        const options = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        };
+
+        fetch(url, options)
+          .then(response => response.json())
+          .then(data => {
+            alert(data)
+          })
+          .catch(error => {
+            console.error("Error:", error);
+          });
+      }
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
       integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

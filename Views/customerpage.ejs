@@ -88,12 +88,6 @@
           aria-labelledby="nav-profile-tab"
           tabindex="0"
         >
-          <div class="mb-3">
-            <label for="formFile" class="form-label"
-              >Upload your Kisan Card for verification</label
-            >
-            <input class="form-control" type="file" id="formFile" />
-          </div>
           <div class="input-group input-group-lg">
             <span class="input-group-text" id="basic-addon1">@</span>
             <input
@@ -143,17 +137,19 @@
         const email = document.getElementById("regEmail");
         const password = document.getElementById("regPass");
         const username = document.getElementById("regName");
-        const kisancard = document.getElementById("formFile");
 
-        const formData = new FormData();
-        formData.append("Email", email.value);
-        formData.append("Password", password.value);
-        formData.append("Username", username.value);
-        formData.append("KisanCard", kisancard.files[0]);
+        const data = {
+          Email: email.value,
+          Password: password.value,
+          Username: username.value,
+        };
 
         const options = {
           method: "POST",
-          body: formData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
         };
 
         fetch(url, options)

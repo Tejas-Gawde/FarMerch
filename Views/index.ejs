@@ -76,6 +76,11 @@
                   <a href="/upload" class="dropdown-item">Upload Data</a>
                 </li>
                 <li class="NavbarList">
+                  <a href="/stockhistory" class="dropdown-item"
+                    >Low Stock Items</a
+                  >
+                </li>
+                <li class="NavbarList">
                   <a href="/logout" class="dropdown-item">Logout</a>
                 </li>
                 <% } else if (user.user_metadata.type === "Customer") { %>
@@ -131,7 +136,7 @@
           <div class="column-3">
             <div class="box">
               <a href="/category=Vegetables">
-              <img src="../Images/vegetables.jpg" />
+                <img src="../Images/vegetables.jpg" />
                 <h2>Vegetables</h2>
               </a>
             </div>
@@ -139,7 +144,7 @@
           <div class="column-3">
             <div class="box">
               <a href="/category=Grains">
-              <img src="../Images/grains.jpg" />
+                <img src="../Images/grains.jpg" />
                 <h2>Grains</h2>
               </a>
             </div>
@@ -147,7 +152,7 @@
           <div class="column-3">
             <div class="box">
               <a href="/category=Cereals">
-              <img src="../Images/cereals.png" />
+                <img src="../Images/cereals.png" />
                 <h2>Cereals</h2>
               </a>
             </div>
@@ -155,7 +160,7 @@
           <div class="column-3">
             <div class="box">
               <a href="/category=Fruits">
-              <img src="../Images/Fruits.jpg" />
+                <img src="../Images/Fruits.jpg" />
                 <h2>Fruits</h2>
               </a>
             </div>
@@ -163,7 +168,7 @@
           <div class="column-3">
             <div class="box">
               <a href="/category=Seeds">
-              <img src="../Images/Seeds.jpg" />
+                <img src="../Images/Seeds.jpg" />
                 <h2>Seeds</h2>
               </a>
             </div>
@@ -171,7 +176,7 @@
           <div class="column-3">
             <div class="box">
               <a href="/category=Processed">
-              <img src="../Images/processed.jpeg" />
+                <img src="../Images/processed.jpeg" />
                 <h2>Processed</h2>
               </a>
             </div>
@@ -186,17 +191,19 @@
       <div class="row-elements">
         <% itemArrayLimit.forEach(item=> { %>
         <div class="pro">
-          <img src="<%= item.url %>" />
-          <h4><%= item.name %></h4>
-          <div class="rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-sharp"></i>
-          </div>
+          <a href="/products/<%= item.name %>">
+            <img src="<%= item.url %>" />
+            <h4><%= item.name %></h4>
+            <div class="rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star-sharp"></i>
+            </div>
+          </a>
           <p>Rs <%= item.price %>/<%= item.availableIn %></p>
-          <a href="#"><i class="fa-solid fa-cart-shopping" class="cart"></i></a>
+          <i class="fa-solid fa-cart-shopping" class="cart"></i>
         </div>
         <% }) %>
       </div>
