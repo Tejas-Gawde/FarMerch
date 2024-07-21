@@ -15,7 +15,7 @@ FarMerch is a web application designed to enable farmers to sell their produce o
 
 ## Installation
 ### Prerequisites
-- Node.js (>= 14.x)
+- Node.js (>= 17.x)
 - npm (>= 6.x)
 - Supabase account and project
 - Stripe account
