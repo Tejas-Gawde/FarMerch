@@ -189,7 +189,8 @@
     <h1 class="title">Featured Products</h1>
     <div class="small-category">
       <div class="row-elements">
-        <% itemArrayLimit.forEach(item=> { %>
+        <% if (itemArrayLimit && itemArrayLimit.length > 0) { %> <%
+        itemArrayLimit.forEach(item => { %>
         <div class="pro">
           <a href="/products/<%= item.name %>">
             <img src="<%= item.url %>" />
@@ -205,7 +206,9 @@
           <p>Rs <%= item.price %>/<%= item.availableIn %></p>
           <i class="fa-solid fa-cart-shopping" class="cart"></i>
         </div>
-        <% }) %>
+        <% }) %> <% } else { %>
+        <h4>No items in the database or databse not initialised</h4>
+        <% } %>
       </div>
     </div>
     <!-------------Offer-------------->

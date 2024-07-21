@@ -119,7 +119,8 @@
 
     <div class="small-category-prod">
       <div class="row-elements-prod">
-        <% categoryData.forEach(item => { %> <% if(item.stock == 0) { %>
+        <% if (categoryData && categoryData.length > 0) { %> <%
+        categoryData.forEach(item => { %> <% if(item.stock == 0) { %>
         <div class="prod" style="cursor: default !important">
           <img src="<%= item.url %>" />
           <h4><%= item.name %></h4>
@@ -148,7 +149,9 @@
           </a>
           <p>Rs <%= item.price %>/<%= item.availableIn %></p>
         </div>
-        <% } %> <% }) %>
+        <% } %> <% }) %> <% } else { %>
+        <h4>No items in the database or databse not initialised</h4>
+        <% } %>
       </div>
     </div>
 
