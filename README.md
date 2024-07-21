@@ -24,7 +24,7 @@ FarMerch is a web application designed to enable farmers to sell their produce o
 1. Clone the repository:
 ```bash
   git clone https://github.com/Tejasg74/FarMerch
-  cd farmerch
+  cd FarMerch
 ```
 2. Install the dependencies:
 ```bash
