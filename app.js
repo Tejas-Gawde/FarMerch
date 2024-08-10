@@ -4,13 +4,11 @@ import createHttpError from 'http-errors';
 
 // Import route files  
 import indexRouter from './routes/index.js';
-import usersRouter from './routes/users.js';
 
 // Import path
 import path from 'path';
 import { getGlobals } from 'common-es'
 const { __dirname } = getGlobals(import.meta.url)
-
 
 var app = express();
 
@@ -22,7 +20,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));;
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
