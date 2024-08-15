@@ -9,7 +9,6 @@ export async function fetchDataLimit() {
     if (error) {
         console.log(error);
     } else {
-        console.log("success");
         return items;
     }
 }
@@ -19,7 +18,6 @@ export async function fetchData() {
     if (error) {
         console.log(error);
     } else {
-        console.log("success");
         return items;
     }
 }
@@ -29,7 +27,6 @@ export async function fetchLowStockItems() {
     if (error) {
         console.log(error);
     } else {
-        console.log("got low stock items");
         return items;
     }
 }
@@ -43,7 +40,6 @@ export async function fetchSingleData(itemName) {
     if (error) {
         console.log(error);
     } else {
-        console.log("got single data");
         return items;
     }
 }
@@ -56,7 +52,6 @@ export async function fetchCategory(categoryName) {
     if (error) {
         console.log(error);
     } else {
-        console.log("got category data");
         return items;
     }
 }
@@ -83,7 +78,6 @@ export async function uploadItem(item) {
         return error;
     }
     else {
-        console.log(data);
         return "Item uploaded";
     }
 }
@@ -91,7 +85,6 @@ export async function uploadItem(item) {
 async function getSellerName() {
     const { data, error } = await supabase.auth.getSession();
     if (data.session != null) {
-        console.log("Session:", data.session.user.id);
         return data.session.user.user_metadata.display_name;
     } else console.log("No session found");
 }
@@ -99,7 +92,6 @@ async function getSellerName() {
 export async function getSession() {
     const { data, error } = await supabase.auth.getSession();
     if (data.session != null) {
-        console.log("Session:", data.session.user.id);
         return data.session.user.id;
     } else console.log("No session found");
 }
@@ -107,8 +99,6 @@ export async function getSession() {
 export async function getuserType() {
     const { data, error } = await supabase.auth.getSession();
     if (data.session != null) {
-        console.log("Session:", data.session.user.id);
-        console.log(data.session.user.user_metadata);
         return data.session.user.user_metadata.type;
     } else console.log("No session found");
 }
@@ -146,7 +136,6 @@ async function createUserRow(value) {
 }
 
 async function uploadKisanCard(file, userID) {
-    console.log(file, "Hi")
     const { data, error } = await supabase.storage
         .from("kisancard")
         .upload(`${userID}/KisanCard.png`, file, { "content-type": "image/png" });
@@ -163,7 +152,6 @@ export async function fetcharray(UserID) {
         .select("cart")
         .eq("userID", UserID)
         .single();
-    console.log("Fetching cart array for user: ", users);
     return users;
 }
 
@@ -175,7 +163,6 @@ export async function addToCart(cartData) {
     const fetchedArray = await fetcharray(UserID);
     fetchedArray.cart.push(cartData);
     const cart = sortCart(fetchedArray.cart);
-    console.log("sorted cart is", cart);
     const { data, error } = await supabase
         .from("users")
         .update({ cart: cart })
@@ -264,7 +251,6 @@ export async function signUpNewSeller(email, password, username, file) {
     } else {
         const userId = await getSession();
         await uploadKisanCard(file, userId);
-        console.log(data);
         return await createSellerRow(
             userId,
             data.user.user_metadata.display_name
@@ -289,7 +275,6 @@ export async function signOutUser() {
     const { error } = await supabase.auth.signOut();
     if (error) alert("Error signing out:", error.message);
     else {
-        console.log("Successfully signed out!");
         getSession();
     }
 }
@@ -304,9 +289,7 @@ export async function loginSeller(email, password) {
     } else {
         if (data.user.user_metadata.type === "Seller") {
             return "Seller logged in successfully";
-            console.log(data);
         } else {
-            console.log("Not a seller account");
             signOutUser();
             return "Not A seller account";
         }

@@ -44,7 +44,6 @@ router.use(async (req, res, next) => {
     if (user) {
         req.body.user = user;
     }
-    else console.log("No user logged in");
     next();
 });
 
@@ -91,7 +90,6 @@ router.get("/stockhistory", async (req, res) => {
     const state = await getuserType();
     if (state == "Seller") {
         const items = await fetchLowStockItems();
-        console.log(items)
         res.render("stockhistory", { items });
     } else {
         const message = "Seller";
@@ -116,7 +114,6 @@ router.get("/cart", async (req, res) => {
     }
     const cart = await fetchCart();
     if (cart) {
-        console.log(cart);
         const cartItems = await fetchCartDetails(cart.map((item) => item.id));
         const finalCart = combineCartAndProductData(cart, cartItems);
         res.render("cart", { finalCart, user });
@@ -173,7 +170,6 @@ router.get("/logout", async (req, res) => {
 //POST requests
 router.post("/addtocart", async (req, res) => {
     const { cartData } = req.body;
-    console.log("cartdaata is", cartData);
     const message = await addToCart(cartData);
     res.send(JSON.stringify(message));
 });
@@ -194,7 +190,6 @@ router.post("/register", async (req, res) => {
 
 router.post("/sellerLogin", async (req, res) => {
     const { Email, Password } = req.body;
-    console.log(Email, Password);
     const message = await loginSeller(Email, Password);
     if (message == "Seller logged in successfully") res.send(JSON.stringify(message));
     else res.status(401).send(JSON.stringify(message));
